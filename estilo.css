@@ -1,0 +1,19 @@
+h1 {
+  color: blue;
+}
+
+* {
+     color: grey;
+}
+
+p {
+    color: green;
+}
+
+.blend {
+    color: red;
+}
+
+.class {
+    color: red;
+}
