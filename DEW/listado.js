@@ -1,28 +1,39 @@
-let seleccion = 459;
+let selec = 3;
 let descuento = 25;
 
 let productos = [
-    {id: 123, nombre: "Pantalon", precio: 25, imagen: 'pantalon.png'},
-    {id: 459, nombre: "Camisa", precio: 15, imagen: 'camisa.png'},
-    {id: 560, nombre: "Zapatos", precio: 45, imagen: 'zapatos.png'},
-    {id: 789, nombre: "Gorra", precio: 5, imagen: 'gorra.png'}
+    {id: 0, nombre: "Pantalon", precio: 25, imagen: 'pantalon.png'},
+    {id: 1, nombre: "Camisa", precio: 15, imagen: 'camisa.png'},
+    {id: 2, nombre: "Zapatos", precio: 45, imagen: 'zapatos.png'},
+    {id: 3, nombre: "Gorra", precio: 5, imagen: 'gorra.png'}
 ]
 
-function buscarProducto(seleccion) {
+/*
+for (let i=0; i<productos.length; i++){
+    if(productos[i].id === selec){
+        console.log(productos[i]);
+    }
+}
+*/
+
+function buscarProducto() {
     for(let i=0; i<productos.length; i++){
-        if(productos[i].id === seleccion){
+        if(productos[i].id === selec){
             console.log(productos[i]);
         }
     }
 }
-function aplicarDescuento(seleccion,descuento) {
-    let producto = buscarProducto(seleccion);
-    if(producto) {
-        let prec = producto.precio - (producto.precio * (descuento / 100));
-        console.log("El precio con descuento es: " + prec);
-    } else {
-        console.log("Producto no encontrado");
+
+
+
+function aplicarDescuento() {
+    for(let i=0; i<productos.length; i++){
+        if(productos[i].id === selec){
+            let prec = productos[i].precio - (productos[i].precio * (descuento / 100));
+            console.log("El precio con descuento es: " + prec);
+        }
     }
 }
 
-aplicarDescuento(123, 20);
+buscarProducto();
+aplicarDescuento();
