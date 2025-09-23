@@ -1,0 +1,68 @@
+p {
+    color: blue;
+    font-size: 20px;
+}
+
+body {
+    color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}   
+
+p {
+    color: red;
+    font-size: 20px;
+}
+
+.tipo-carta {
+    width: 200px;
+    height: 280px;
+    background-color: blueviolet;
+    border-color: 1px solid black;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 0 0 10px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.tipo-secundaria {
+    width: 200px;
+    height: 280px;
+    background-color: lightblue;
+    border-color: 1px solid black;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 10px 0 0 10px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.capa-formulario {
+    color: white;
+    margin-top: 50px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: green;
+    width: 300px;
+}
+
+.form-line {
+    margin: 10px 0 10px 0;
+}
+
+input:focus {
+    background-color: yellow;
+}
+
+a:hover {
+    color: black;
+    font-size: 20px;
+}
+
+body > div.tipo-secundaria {
+    background-color: lightcoral;
+}
