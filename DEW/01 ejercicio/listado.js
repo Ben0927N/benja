@@ -57,3 +57,4 @@ function aplicarDescuento() {
 
 aplicarDescuento();
 mostrarProducto(productoSeleccionado);
+//24/9
