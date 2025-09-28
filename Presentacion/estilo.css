@@ -1,11 +1,36 @@
-.class {
+body {
+    background-image: url('portada.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+h1 {
     color: red;
 }
 
-p{
-    color: green;
+.cuadrado {
+    width: 0px;
+    height: 0px;
+    border-radius: 12px;
+    margin: auto;
+    box-shadow: 0 2px 8px rgb(0, 0, 0);
 }
 
-h1{
-    font-size: 100%;
+.cuadrado-arriba {
+    width: 1250px;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.568);
+    border-radius: 16px;
+    align-self: center;
+    margin: 100px 325px 100px 325px;
+}
+
+.cuadrado-abajo {
+    width: 1250px;
+    height: 500px; 
+    background: rgba(0, 0, 0, 0.568);
+    border-radius: 16px;
+    align-self: center;
+    margin: 100px 325px 100px 325px;
 }
