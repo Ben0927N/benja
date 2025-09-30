@@ -1,0 +1,54 @@
+/*
+
+ ELEMENTO                                            Display
+
+- div,h1,h2,h3,........., p, header, section ------- block
+- img, buttons, inputs   --------------------------- inline-block
+- span,a, strong ----------------------------------- inline 
+- table -------------------------------------------- table
+
+Ademas de estos 4 principales tipos de Display, tenemos los modelos
+conocidos como FlexBox y Grid, son indicados por el desarrollador 
+para un objetivo concreto
+
+*/
+
+/********* Usamos bloc ***********/
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 10px;
+    height: 100vh;
+    align-items:baseline;
+}
+
+.item {
+    background-color: blueviolet;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: white;
+}
+
+.priority {
+    order: 4;
+    background-color: brown;
+}
+
+@media (max-width: 769px) {
+    .container {
+        flex-direction: column;
+    }
+    .item {
+        width: 300px;
+    }
+    .priority {
+        order: -1;
+        background-color: red;
+    }
+}
