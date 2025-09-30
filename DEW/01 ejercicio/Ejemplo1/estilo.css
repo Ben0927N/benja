@@ -1,0 +1,13 @@
+body {
+    background-image: url('portada.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.a {
+    background-color: rgba(138, 9, 9, 0.736);
+    border-radius: 50px; 
+    height: 100px; 
+    width: 100px;
+}
