@@ -17,6 +17,7 @@ export class Jugador extends Personaje {
   }
 
   mostrarEstado() {
-    console.log(`${this.nombre} → Vida: ${this.vida}, Inventario: ${this.inventario.map(o => o.nombre).join(", ")}`);
+    console.log(`${this.nombre} → Vida: ${this.vida}, Inventario: ${this.inventario.map(o => o.nombre).join(", ")}`); 
+    //Sobreescritura del mostrarEstado() de Personaje
   }
 }
