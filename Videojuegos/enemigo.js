@@ -1,4 +1,4 @@
-export class enemigo{
+export class Enemigo{
     constructor(nombre, vida = 50, dano = 5){
         this.nombre = nombre
         this.vida = vida
