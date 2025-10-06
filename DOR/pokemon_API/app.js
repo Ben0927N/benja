@@ -41,6 +41,19 @@ function creatCard(pokemon){
     return TarjetaHTML;
 }
 
-function buclePokemon(pokemon){
+async function buclePokemon(){
+    container.innerHTML = '<h2>Cargando primeros 10 Pokémon...</h2>'; 
+    let allCardsHTML = '';
+    
+    for (let id = 1; id <= 10; id++) {
+        const pokemon = await getpokemon(id); 
 
+        if (pokemon) {
+            allCardsHTML += creatCard(pokemon);
+        }
+    }
+    
+    container.innerHTML = allCardsHTML; 
 }
+
+buclePokemon(); 
