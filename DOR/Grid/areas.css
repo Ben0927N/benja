@@ -1,0 +1,28 @@
+.container {
+    background-color: blue;
+    display: grid;
+    min-height: 500px;
+    grid-template-areas: "head head head"
+                         "menu content content"
+                         "footer footer footer";
+    grid-template-rows: 100px 500px 100px;
+}
+
+.container header {grid-area: head; background-color: brown;}
+.container .menu {grid-area: menu; background-color: blueviolet;}
+.container .content {grid-area: content; background-color: cadetblue;}
+.container footer {grid-area: footer; background-color: yellow;}
+
+@media(max-width: 760px){
+    .container {
+        background-color: blue;
+        min-height: 500px;
+        display: grid;
+
+        grid-template-areas: "head"
+                             "menu"
+                             "content"
+                             "footer";
+        grid-template-rows: 100px 50px 500px 100px;
+    }
+}

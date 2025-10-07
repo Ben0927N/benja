@@ -1,0 +1,21 @@
+.container {
+    background-color: blueviolet;
+    display: grid;
+    min-height: 500px;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 100px 100px;
+    gap: 5px;
+
+    align-items: center;
+    justify-items: center;
+    
+    align-content: end;
+    justify-content: end;
+
+    place-content: end;
+}
+
+.item {
+    background-color: blue;
+    color: white;
+}
