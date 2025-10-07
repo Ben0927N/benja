@@ -1,17 +1,22 @@
 body {
-    background-color:rgba(10, 10, 187, 0.897);
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    min-height: 100vh;
     text-align: center;
 }
 
 #container-pokedex { /* coincidir con el Id de HTML*/
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid; 
+    width: 100%; 
+    grid-template-columns: repeat(5, 1fr);  /* Crea 5 columnas de ancho igual */
+    gap: 20px; 
     justify-content: center;
-    gap: 20px;
-    align-items: 20px;
+    padding: 0 20px; 
+}
+
+.buscar-pokedex {
+    margin: 0 auto 20px auto; 
+    width: fit-content;      
 }
 
 .pokemon-card {
@@ -20,13 +25,7 @@ body {
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 250px;
     text-align: center;
-}
-
-.pokemon-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .pokemon-card img {
