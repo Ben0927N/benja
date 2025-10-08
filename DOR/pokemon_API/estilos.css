@@ -1,17 +1,19 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #a43838;
     min-height: 100vh;
     text-align: center;
 }
 
-#container-pokedex { /* coincidir con el Id de HTML*/
+#container-pokedex {
     display: grid; 
-    width: 100%; 
-    grid-template-columns: repeat(5, 1fr);  /* Crea 5 columnas de ancho igual */
-    gap: 20px; 
-    justify-content: center;
-    padding: 0 20px; 
+    min-height: 500px;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 100px 100px; 
+    gap: 5;
+
+    align-items: center;
+    justify-items: center;
 }
 
 .buscar-pokedex {
@@ -20,7 +22,7 @@ body {
 }
 
 .pokemon-card {
-    background-color: rgba(64, 53, 228, 0.836);
+    background-color: rgb(132, 228, 53);
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);

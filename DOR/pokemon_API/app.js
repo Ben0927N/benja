@@ -42,11 +42,11 @@ function creatCard(pokemon){
 }
 
 async function buclePokemon(){
-    container.innerHTML = '<h2>Cargando primeros 10 Pokémon...</h2>'; 
+    container.innerHTML = '<h2>Cargando todos los Pokémon...</h2>'; 
     let allCardsHTML = '';
     
-    for (let id = 1; id <= 10; id++) {
-        const pokemon = await getpokemon(id); 
+    for (let i = 1; i <= 25; i++) {
+        const pokemon = await getpokemon(i); 
 
         if (pokemon) {
             allCardsHTML += creatCard(pokemon);
@@ -57,3 +57,25 @@ async function buclePokemon(){
 }
 
 buclePokemon(); 
+
+/* 
+
+async function buclePokemonV2(){
+
+    try{
+        const promise = []
+        for (let = i; i <= 10; i++){
+            promises.push(getPokemon{i})
+        }
+        const pokemons = await Promise.all(promises)
+
+        const cards = pokemons.map(p -> createCard(p).join(""))
+        let contenedor = document.getElementById("poke.contenedor")
+        contenedor.innerHtml= cards
+    } catch (error) {
+         
+    }
+
+}
+
+*/
