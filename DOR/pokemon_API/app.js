@@ -1,17 +1,34 @@
 async function getpokemon(id) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    if(!response.ok)
+        throw new Error(`Error ${response.status} en la solicitud....`)
     const data = await response.json()
     return data
 }
 
+/*
 const searchInput = document.getElementById('buscarIdPokemon'); 
 const searchButton = document.getElementById('buscar-boton');  
 const container = document.querySelector('.container-pokedex')
 
+
 if (searchButton) {
     searchButton.addEventListener('click', buscarIDPokemon); 
 } 
+*/
 
+
+async function createCard(pokemon){
+    return`
+    <div class = "card">
+    <img src ="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+    <h2>${pokemon.name}</h2>
+    <p>${pokemon.height}</p>
+    <p>${pokemon.types.map(t => t.type.name).join(", ")}</p>
+    `
+}
+
+/*
 async function buscarIDPokemon(id){
     const pokemonId = searchInput.value;
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
@@ -23,7 +40,9 @@ async function buscarIDPokemon(id){
         container.innerHTML = '<h2>No se encontró el Pokémon.</h2>';
     }
 }
+*/
 
+/*
 function creatCard(pokemon){
     const types = pokemon.types.map(t => t.type.name).join(', '); //tuve que buscarlo, pero es que en el array, buscar por nombre y tipo y los une con el join
     const height_m = (pokemon.height / 10).toFixed(1); // la altura pasamos de decimetros a metros
@@ -40,7 +59,9 @@ function creatCard(pokemon){
     
     return TarjetaHTML;
 }
+*/
 
+/*
 async function buclePokemon(){
     container.innerHTML = '<h2>Cargando todos los Pokémon...</h2>'; 
     let allCardsHTML = '';
@@ -57,7 +78,7 @@ async function buclePokemon(){
 }
 
 buclePokemon(); 
-
+*/
 /* 
 
 async function buclePokemonV2(){
@@ -79,3 +100,32 @@ async function buclePokemonV2(){
 }
 
 */
+
+
+
+async function buclePokemonV3(){
+    try{
+        const promises = [];
+        for(let i = 1; i <= 10; i++){
+            if(i == 4)
+                promises.push(getpokemon(i))
+            else promises.push(getpokemon(i))
+        }
+
+        const pokemons = await Promise.allSettled(promises)
+        console.log(pokemons)
+
+        const successful = pokemons
+        .filter (r => r.status === "fulfilled")
+        .map (r => r.value)
+
+        const cards = successful.map (p => createCard(p)).join("")
+        let contenedor = document.getElementById("container-pokedex")
+        contenedor.innerHTML = cards
+
+    } catch (error){
+
+    }
+}
+
+buclePokemonV3();
