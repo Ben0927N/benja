@@ -6,30 +6,69 @@
 
 .item {
     width: 100px;
-    height: 100px;
+    height: 35px;
     border-radius: 10px;
     background: violet;
 
-    animation-name: change-color;
+    /*animation-name: change-color;
     animation-duration: 10s;
     animation-timing-function: ease;
     animation-iteration-count: infinite;
     animation-delay: 3s;
     animation-direction: reverse;
-    animation-play-state: running;
+    animation-play-state: running;*/
+
+    animation: change-color 10s infinite alternate-reverse, 
+                move-item 10s infinite alternate-reverse;
 }
 
 @keyframes change-color {
     0% {
         background: violet;
+        width: 100px;
     }
 
     25% {
-
+        background: green;
+        width: 250px;
     }
     
+    50%{
+        background: orange;
+        width: 500px;
+    }
+
+    75%{
+        background: red;
+        width: 75%;
+    }
+
     100%{
         background: greenyellow;
+        width: 100%;
+    }
+
+}
+
+@keyframes move-item {
+    0% {
+        transform: translate(0,0);
+    }
+
+    25% {
+        transform: translate(0,100px);
+    }
+    
+    50%{
+        transform: translate(0,200px);
+    }
+
+    75%{
+        transform: translate(0,300px);
+    }
+
+    100%{
+        transform: translate(0,400px);
     }
 
 }
