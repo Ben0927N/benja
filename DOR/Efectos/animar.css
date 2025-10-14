@@ -1,0 +1,35 @@
+.container {
+    background: black;
+    min-height: 700px;
+    padding: 10px;
+}
+
+.item {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background: violet;
+
+    animation-name: change-color;
+    animation-duration: 10s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-delay: 3s;
+    animation-direction: reverse;
+    animation-play-state: running;
+}
+
+@keyframes change-color {
+    0% {
+        background: violet;
+    }
+
+    25% {
+
+    }
+    
+    100%{
+        background: greenyellow;
+    }
+
+}
