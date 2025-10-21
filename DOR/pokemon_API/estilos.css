@@ -10,8 +10,8 @@ body {
     min-height: 500px;
     grid-template-columns: 100px 100px;
     grid-template-rows: 100px 100px; 
-    gap: 5;
-
+    gap: 5px;
+    
     align-items: center;
     justify-items: center;
 }
@@ -22,11 +22,10 @@ body {
 }
 
 .pokemon-card {
-    background-color: rgb(132, 228, 53);
+    background-color: rgba(132, 228, 53, 0.588);
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     text-align: center;
 }
 

@@ -1,12 +1,14 @@
+const URL_API = 'https://pokeapi.co/api/v2/pokemon/'
+
 async function getpokemon(id) {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+    const response = await fetch(`${URL_API}${id}`)
     if(!response.ok)
         throw new Error(`Error ${response.status} en la solicitud....`)
     const data = await response.json()
     return data
 }
 
-/*
+
 const searchInput = document.getElementById('buscarIdPokemon'); 
 const searchButton = document.getElementById('buscar-boton');  
 const container = document.querySelector('.container-pokedex')
@@ -15,7 +17,7 @@ const container = document.querySelector('.container-pokedex')
 if (searchButton) {
     searchButton.addEventListener('click', buscarIDPokemon); 
 } 
-*/
+
 
 
 async function createCard(pokemon){
@@ -28,7 +30,7 @@ async function createCard(pokemon){
     `
 }
 
-/*
+
 async function buscarIDPokemon(id){
     const pokemonId = searchInput.value;
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
@@ -40,28 +42,21 @@ async function buscarIDPokemon(id){
         container.innerHTML = '<h2>No se encontró el Pokémon.</h2>';
     }
 }
-*/
 
-/*
+
 function creatCard(pokemon){
-    const types = pokemon.types.map(t => t.type.name).join(', '); //tuve que buscarlo, pero es que en el array, buscar por nombre y tipo y los une con el join
-    const height_m = (pokemon.height / 10).toFixed(1); // la altura pasamos de decimetros a metros
-    const weight_kg = (pokemon.weight / 10).toFixed(1); // el peso pasamos hectogramos a kilogramos
-    const TarjetaHTML = `
+    return `
         <div class="pokemon-card">
             <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
             <h3>#${pokemon.id} - ${pokemon.name.toUpperCase()}</h3>
-            <p>Tipo(s): ${types}</p>
-            <p>Altura: ${height_m} m</p>
-            <p>Peso: ${weight_kg} kg</p>
+            <p>Tipo(s): ${pokemon.types.map(t => t.type.name).join(", ")}</p>
+            <p>Altura: ${pokemon.height} m</p>
+            <p>Peso: ${pokemon.weight} kg</p>
         </div>
     `;
-    
-    return TarjetaHTML;
 }
-*/
 
-/*
+
 async function buclePokemon(){
     container.innerHTML = '<h2>Cargando todos los Pokémon...</h2>'; 
     let allCardsHTML = '';
@@ -78,7 +73,7 @@ async function buclePokemon(){
 }
 
 buclePokemon(); 
-*/
+
 /* 
 
 async function buclePokemonV2(){
@@ -99,9 +94,10 @@ async function buclePokemonV2(){
 
 }
 
+buclePokemonV2();
 */
 
-
+/*
 
 async function buclePokemonV3(){
     try{
@@ -129,3 +125,5 @@ async function buclePokemonV3(){
 }
 
 buclePokemonV3();
+
+*/
