@@ -22,40 +22,26 @@ if (searchButton) {
 
 async function createCard(pokemon){
     return`
-    <div class = "card">
+    <div class = "pokemon-card">
     <img src ="${pokemon.sprites.front_default}" alt="${pokemon.name}">
     <h2>${pokemon.name}</h2>
     <p>${pokemon.height}</p>
     <p>${pokemon.types.map(t => t.type.name).join(", ")}</p>
+    </div>
     `
 }
 
 
 async function buscarIDPokemon(id){
     const pokemonId = searchInput.value;
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`);
-    if(response.ok) {//un true de que se conecta bien
-        const pokemon = await response.json(); 
-        const TarjetaHTML = creatCard(pokemon); 
+    const pokemon = await getpokemon(pokemonId);
+    if(pokemon) {
+        const TarjetaHTML = createCard(pokemon); 
         container.innerHTML = TarjetaHTML;
     } else {
         container.innerHTML = '<h2>No se encontró el Pokémon.</h2>';
     }
 }
-
-
-function creatCard(pokemon){
-    return `
-        <div class="pokemon-card">
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-            <h3>#${pokemon.id} - ${pokemon.name.toUpperCase()}</h3>
-            <p>Tipo(s): ${pokemon.types.map(t => t.type.name).join(", ")}</p>
-            <p>Altura: ${pokemon.height} m</p>
-            <p>Peso: ${pokemon.weight} kg</p>
-        </div>
-    `;
-}
-
 
 async function buclePokemon(){
     container.innerHTML = '<h2>Cargando todos los Pokémon...</h2>'; 
