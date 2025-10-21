@@ -3,62 +3,80 @@ const URL_API = 'https://pokeapi.co/api/v2/pokemon/'
 async function getpokemon(id) {
     const response = await fetch(`${URL_API}${id}`)
     if(!response.ok)
-        throw new Error(`Error ${response.status} en la solicitud....`)
+
+        throw new Error(`Error ${response.status} en la solicitud para el ID: ${id}`) 
     const data = await response.json()
     return data
 }
 
 
 const searchInput = document.getElementById('buscarIdPokemon'); 
-const searchButton = document.getElementById('buscar-boton');  
-const container = document.querySelector('.container-pokedex')
+const searchButton = document.getElementById('buscar-boton');  
+
+const container = document.querySelector('.container-pokedex') 
 
 
 if (searchButton) {
     searchButton.addEventListener('click', buscarIDPokemon); 
 } 
 
-
-
-async function createCard(pokemon){
+function createCard(pokemon){
+    const height_m = (pokemon.height / 10).toFixed(1); 
+    const weight_kg = (pokemon.weight / 10).toFixed(1);
+    
     return`
-    <div class = "pokemon-card">
-    <img src ="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-    <h2>${pokemon.name}</h2>
-    <p>${pokemon.height}</p>
-    <p>${pokemon.types.map(t => t.type.name).join(", ")}</p>
-    </div>
+        <div class = "pokemon-card">
+            <img src ="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <h3>#${pokemon.id} - ${pokemon.name.toUpperCase()}</h3>
+            <p>Tipo(s): ${pokemon.types.map(t => t.type.name).join(", ")}</p>
+            <p>Altura: ${height_m} m</p>
+            <p>Peso: ${weight_kg} kg</p>
+        </div>
     `
 }
 
 
-async function buscarIDPokemon(id){
+async function buscarIDPokemon(){
     const pokemonId = searchInput.value;
-    const pokemon = await getpokemon(pokemonId);
-    if(pokemon) {
+    if (!pokemonId) {
+        container.innerHTML = '<h2>Por favor, introduce un ID de Pokémon.</h2>';
+        return;
+    }
+
+    try {
+        const pokemon = await getpokemon(pokemonId);
         const TarjetaHTML = createCard(pokemon); 
         container.innerHTML = TarjetaHTML;
-    } else {
+        
+    } catch (error) {
         container.innerHTML = '<h2>No se encontró el Pokémon.</h2>';
+        console.error("Error al buscar Pokémon:", error);
     }
 }
+
 
 async function buclePokemon(){
     container.innerHTML = '<h2>Cargando todos los Pokémon...</h2>'; 
     let allCardsHTML = '';
     
     for (let i = 1; i <= 25; i++) {
-        const pokemon = await getpokemon(i); 
 
-        if (pokemon) {
-            allCardsHTML += creatCard(pokemon);
+        try {
+            const pokemon = await getpokemon(i); 
+            
+            if (pokemon) {
+                allCardsHTML += createCard(pokemon);
+            }
+        } catch (error) {
+            console.warn(`No se pudo cargar el Pokémon con ID ${i}: ${error.message}`);
         }
     }
     
     container.innerHTML = allCardsHTML; 
 }
 
-buclePokemon(); 
+
+buclePokemon();
 
 /* 
 
