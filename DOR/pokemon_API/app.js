@@ -1,48 +1,33 @@
 const URL_API = 'https://pokeapi.co/api/v2/pokemon/'
 
-async function getpokemon(id) {
-    const response = await fetch(`${URL_API}${id}`)
+async function getpokemon(nombre_o_id) {
+    const buscarlo = String(nombre_o_id)
+    const response = await fetch(`${URL_API}${buscarlo}`)
     if(!response.ok)
-
-        throw new Error(`Error ${response.status} en la solicitud para el ID: ${id}`) 
+        throw new Error(`Error ${response.status} en la solicitud para el ID o nombre: ${buscarlo}`) 
     const data = await response.json()
     return data
 }
 
 
-const searchInput = document.getElementById('buscarIdPokemon'); 
-const searchButton = document.getElementById('buscar-boton');  
+const searchInputId = document.getElementById('buscarIdPokemon'); 
+const searchInputName = document.getElementById('buscarNombrePokemon');
 
-const container = document.querySelector('.container-pokedex') 
+const searchButtonId = document.getElementById('buscar-id-boton'); 
+const searchButtonName = document.getElementById('buscar-nombre-boton');
 
+const container = document.getElementById('container-pokedex');
 
-if (searchButton) {
-    searchButton.addEventListener('click', buscarIDPokemon); 
-} 
-
-function createCard(pokemon){
-    const height_m = (pokemon.height / 10).toFixed(1); 
-    const weight_kg = (pokemon.weight / 10).toFixed(1);
-    
-    return`
-        <div class = "pokemon-card">
-            <img src ="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-            <h3>#${pokemon.id} - ${pokemon.name.toUpperCase()}</h3>
-            <p>Tipo(s): ${pokemon.types.map(t => t.type.name).join(", ")}</p>
-            <p>Altura: ${height_m} m</p>
-            <p>Peso: ${weight_kg} kg</p>
-        </div>
-    `
+if (searchButtonId) {
+    searchButtonId.addEventListener('click', buscarIDPokemon); 
+}
+if (searchButtonName) {
+    searchButtonName.addEventListener('click', buscarNombrePokemon);
 }
 
-
 async function buscarIDPokemon(){
-    const pokemonId = searchInput.value;
-    if (!pokemonId) {
-        container.innerHTML = '<h2>Por favor, introduce un ID de Pokémon.</h2>';
-        return;
-    }
-
+    const pokemonId = searchInputId.value;
+    searchInputName.value = '';
     try {
         const pokemon = await getpokemon(pokemonId);
         const TarjetaHTML = createCard(pokemon); 
@@ -50,26 +35,43 @@ async function buscarIDPokemon(){
         
     } catch (error) {
         container.innerHTML = '<h2>No se encontró el Pokémon.</h2>';
-        console.error("Error al buscar Pokémon:", error);
     }
 }
 
+async function buscarNombrePokemon(){
+    const pokemonNombre = searchInputName.value;
+    searchInputId.value = '';
+    try {
+        const pokemon = await getpokemon(pokemonNombre);
+        const TarjetaHTML = createCard(pokemon); 
+        container.innerHTML = TarjetaHTML;
+        
+    } catch (error) {
+        container.innerHTML = '<h2>No se encontró el Pokémon.</h2>';
+    }
+}
+
+function createCard(pokemon){
+    return`
+        <div class = "pokemon-card">
+            <img src ="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <h3>#${pokemon.id} - ${pokemon.name.toUpperCase()}</h3>
+            <p>Tipo(s): ${pokemon.types.map(t => t.type.name).join(", ")}</p>
+            <p>Altura: ${pokemon.height} m</p>
+            <p>Peso: ${pokemon.weight} kg</p>
+        </div>
+    `
+}
 
 async function buclePokemon(){
     container.innerHTML = '<h2>Cargando todos los Pokémon...</h2>'; 
     let allCardsHTML = '';
     
     for (let i = 1; i <= 25; i++) {
-
-        try {
-            const pokemon = await getpokemon(i); 
-            
+            const pokemon = await getpokemon(i);
             if (pokemon) {
                 allCardsHTML += createCard(pokemon);
             }
-        } catch (error) {
-            console.warn(`No se pudo cargar el Pokémon con ID ${i}: ${error.message}`);
-        }
     }
     
     container.innerHTML = allCardsHTML; 

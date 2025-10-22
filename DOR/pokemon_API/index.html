@@ -8,13 +8,19 @@
 </head>
 <body>
     <h1>Mi pokedex</h1>
-    
-    <div class="buscar-pokedex">
-        <input type="number" id="buscarIdPokemon" placeholder="Id del pokemon....">
-        <button type="button" id="buscar-boton">Buscar pokemon</button>
+    <div class="capa-formulario">
+        <div class="buscar-pokedex">
+            <button type="button" id="buscar-id-boton">Buscar pokemon</button><br>
+            <input type="number" id="buscarIdPokemon" placeholder="Id del pokemon....">
+        </div>
+        <div class="buscar-pokedex"> 
+                <button type="button" id="buscar-nombre-boton">Buscar por nombre:</button><br>
+            <input type="text" id="buscarNombrePokemon" placeholder="Nombre del pokemon....">
+        </div>
     </div>
 
-    <div class="container-pokedex"></div>
+
+    <div id="container-pokedex"></div>
 
     <script src="app.js"></script>
 </body>
