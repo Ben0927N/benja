@@ -1,0 +1,41 @@
+body{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 15px;
+    color: white;
+    background-color: rgb(9, 47, 145);
+}
+
+.container{
+    background-color: rgb(9, 47, 145);
+    display: grid;
+    /*justify-content: center;  centra los items del container en el eje central*/
+    /*gap: 10px; Separacion entre items*/
+    min-height: 500px; /*Largo del contenedor*/
+    grid-template-rows: 100px 500px 100px;
+    grid-template-areas: "header header header"
+                         "login login login";
+
+}
+
+.container header{
+    grid-area: header;
+    background-color: yellowgreen;
+    height: 200px; /*Largo del item*/
+    border-radius: 10px;
+}
+
+.container .login{
+    grid-area: login;
+    background-color: brown;
+    height: 450px; /*Largo del item*/
+    /*margin-top: 400px; Esto es la diferencia con el espacio exterior*/
+    align-items: center;
+    margin: 125px;
+    border-radius: 100px;
+    
+}.formulario{
+    
+    margin: 150px 100px 150px 100px;
+    justify-content: center;
+}
+
