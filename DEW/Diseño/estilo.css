@@ -2,16 +2,16 @@ body{
     font-family:'Times New Roman', Times, serif;
     font-size: 15px;
     color: white;
-    background-color: rgb(9, 47, 145);
+    background-color: rgb(19, 73, 209);
 }
 
 .container{
-    background-color: rgb(9, 47, 145);
+    background-color: transparent;
     display: grid;
     /*justify-content: center;  centra los items del container en el eje central*/
     /*gap: 10px; Separacion entre items*/
-    min-height: 500px; /*Largo del contenedor*/
-    grid-template-rows: 100px 500px 100px;
+    min-height: 300px; /*Largo del contenedor*/
+    grid-template-rows: 100px 450px 100px;
     grid-template-areas: "header header header"
                          "login login login";
 
@@ -20,22 +20,38 @@ body{
 .container header{
     grid-area: header;
     background-color: yellowgreen;
-    height: 200px; /*Largo del item*/
+    height: 150px; /*Largo del item*/
     border-radius: 10px;
+}
+
+.login h1{
+    text-align: center;
 }
 
 .container .login{
     grid-area: login;
     background-color: brown;
-    height: 450px; /*Largo del item*/
+    height: 600px; /*Largo del item*/
+    width: 600px; /*Ancho del item*/
     /*margin-top: 400px; Esto es la diferencia con el espacio exterior*/
-    align-items: center;
-    margin: 125px;
+    /*margin: 85px 0px 0px 625px; Arriba / Derecha / Abajo / Izquierda */
+    margin-left: 650px; /*Mueve a la derecha*/
+    margin-top: 100px; /*Mueve hacia abajo*/
     border-radius: 100px;
-    
-}.formulario{
-    
-    margin: 150px 100px 150px 100px;
-    justify-content: center;
+    border: 3px solid black; /* Borde del contenedor 'solid' le da esa remarcado*/
 }
 
+form{
+    margin-left: 150px;
+    margin-top: 150px;
+}
+
+form label{
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+}   
+
+form input{
+    width: 100px;
+}
