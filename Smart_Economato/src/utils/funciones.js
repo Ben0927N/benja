@@ -1,5 +1,5 @@
 export function filtrarPorCategoria(productos, categoria) {
-  //
+  return productos.filter(p=>p.categoria)
 }
 
 export function buscarProducto(productos, nombre) {
