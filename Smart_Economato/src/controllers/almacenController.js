@@ -1,5 +1,6 @@
-import { productos } from './productos.js';
-import { filtrarPorCategoria, buscarProducto, ordenarPorPrecio, comprobarStockMinimo } from './funciones.js';
+import { productos } from '../models/productos.js';
+import { filtrarPorCategoria, buscarProducto } from '../utils/funciones.js';
+import { renderizarTabla} from '../views/ui.js';
 
 const tabla = document.querySelector('#tablaProductos tbody');
 const resumen = document.querySelector('#resumen');
