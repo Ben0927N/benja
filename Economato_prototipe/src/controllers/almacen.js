@@ -1,7 +1,7 @@
 import { productos } from '../services/productos.js';
 import { filtrarPorCategoria, buscarProducto, ordenarPorPrecio, comprobarStockMinimo } from '../utils/funciones.js';
 import { renderizarTabla } from '../view/almacen-ui.js';
-
+import { getproducto } from '../services/economatoServices.js';
 
 
 const inputBusqueda = document.querySelector('#busqueda');
@@ -22,7 +22,7 @@ const evenMap = [
 let productosMostrados = [];
 
 function inicializar() {
-  productosMostrados = [...productos];
+  productosMostrados = getproducto();
   renderizarTabla(productosMostrados)
   bindEvents(evenMap)
 }
