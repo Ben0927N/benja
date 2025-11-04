@@ -2,7 +2,7 @@ body{
     font-family:'Times New Roman', Times, serif;
     font-size: 15px;
     color: white;   
-    background-color: rgb(107, 154, 224);
+    background-color: white;
     font-family: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
@@ -18,51 +18,49 @@ body{
     grid-template-rows: auto auto;
 }
 
-.container header h1{
+.container header h2{
+    color: black;
     display: flex;
-    margin-left: 525px;
+    margin-left: 650px;
     margin-top: -70px;
 }
 
 .container header img.CIF{
-    size: 100px;
-    width: 300px;
-    margin-left: 200px;
+    size: 50px;
+    width: 200px;
+    margin-left: 100px;
     margin-top: 10px;
 }
 
 .container header img.Gobierno{
-    size: 100px;
-    width: 300px;
-    margin-left: 1225px;
-    margin-top: -170px;
+    size: 50px;
+    width: 200px;
+    margin-left: 1150px;
+    margin-top: -45px;
 }
 
 .container header{
     grid-area: header;
     background-color: rgb(156, 172, 241);
-    height: 150px; /*Largo del item*/
+    height: 100px; /*Largo del item*/
     border-radius: 10px;
     border: 3px solid black;
 }
 
-h1{
-    color: black;
-}
-
 .login h1{
+    color: black;
     text-align: center;
 }
 
 .container .login {
     grid-area: login;
     background-color:rgb(166, 179, 221);
-    height: 600px; /*Largo del item*/
+    height: 500px; /*Largo del item*/
     width: 600px; /*Ancho del item*/
     /*margin-top: 400px; Esto es la diferencia con el espacio exterior*/
     /*margin: 85px 0px 0px 625px; Arriba / Derecha / Abajo / Izquierda */
-    margin-left: 650px; /*Mueve a la derecha*/
-    margin-top: 100px; /*Mueve hacia abajo*/
+    margin-left: 450px; /*Mueve a la derecha*/
+    margin-top: 20px; /*Mueve hacia abajo*/
     border-radius: 100px;
     border: 3px solid black; 
 }
