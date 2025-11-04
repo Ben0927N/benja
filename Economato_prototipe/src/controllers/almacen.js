@@ -22,7 +22,8 @@ const evenMap = [
 let productosMostrados = [];
 
 function inicializar() {
-  productosMostrados = getproducto();
+  productosMostrados = await getproducto()
+  let categoria = await getCategorias()
   renderizarTabla(productosMostrados)
   bindEvents(evenMap)
 }
