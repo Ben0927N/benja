@@ -3,7 +3,6 @@ body{
     font-size: 15px;
     color: white;   
     background-color: white;
-    font-family: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
 .container{
@@ -14,8 +13,16 @@ body{
     min-height: 300px; /*Largo del contenedor*/
     grid-template-rows: auto auto; /*Cantidad de filas y su tamaño*/
     grid-template-areas: "header header header"
-                         "login login login";
-    grid-template-rows: auto auto;
+                         "login login login"
+                         "footer footer footer"; 
+}
+
+.container header{
+    grid-area: header;
+    background-color: rgb(199, 64, 64);
+    height: 100px; /*Largo del item*/
+    border-radius: 10px;
+    border: 3px solid black;
 }
 
 .container header h2{
@@ -39,22 +46,9 @@ body{
     margin-top: -45px;
 }
 
-.container header{
-    grid-area: header;
-    background-color: rgb(156, 172, 241);
-    height: 100px; /*Largo del item*/
-    border-radius: 10px;
-    border: 3px solid black;
-}
-
-.login h1{
-    color: black;
-    text-align: center;
-}
-
 .container .login {
     grid-area: login;
-    background-color:rgb(166, 179, 221);
+    background-color:rgb(199, 64, 64);
     height: 500px; /*Largo del item*/
     width: 600px; /*Ancho del item*/
     /*margin-top: 400px; Esto es la diferencia con el espacio exterior*/
@@ -63,6 +57,11 @@ body{
     margin-top: 20px; /*Mueve hacia abajo*/
     border-radius: 100px;
     border: 3px solid black; 
+}
+
+.login h1{
+    color: black;
+    text-align: center;
 }
 
 label{
@@ -101,60 +100,56 @@ button:hover{
     color: white;
 }
 
+.container footer{ grid-area:footer; color: black;}
+
 @media (max-width: 480px) {
-  /* Estilos para móviles pequeños */
+    .container {
+        display: grid;
+        grid-template-areas: 
+            "header header header"
+            "login login login";
+        grid-template-rows: auto auto;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .container header{
+        display: flex;
+        flex-direction: column;
+        height: 120px;
+    }
+
+  
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
     .container {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-template-areas:
-      "header header header"
-      "login login login";
-    justify-content: center;
-    padding: 20px;
+     display: grid;
+     grid-template-rows: auto auto;
+     grid-template-areas:
+         "header header header"
+         "login login login";
   }
 
   .container header {
-    display: flex;
-    flex-direction: column;
+     grid-area: header;
+     width: 750px;
   }
 
-  .container header h1 {
-    margin: 10px 0px;
-    font-size: 24px;
+  .container header img.CIF {
+    margin-left: 30px;
   }
 
-  .container header p {
-    font-size: 14px;
-    margin-top: -90px;
+  .container header img.Gobierno {
+    margin-left: 550px;
+  }
+
+  .container header h2{
     margin-left: 300px;
   }
 
-  .container header img {
-    width: 200px;
-    margin: 10px 0px 10px -2500px;
+  .container .login{
+    grid-area: login;
+    margin-left: 60px;
   }
-
-  .container .login {
-    width: 1000px;
-    max-width: 400px;
-    height: 450px;
-    margin: 20px 30px;
-    padding: 20px;
-    border-radius: 35px;
-  }
-
-  label, input, button {
-    margin-left: 0;
-    width: 100%;
-    max-width: 300px;
-    margin: 10px 15px;
-  }
-
-  button {
-    height: 40px;
-  }
-
 }
