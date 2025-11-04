@@ -11,7 +11,7 @@ body{
     display: grid;
     /*justify-content: center;  centra los items del container en el eje central*/
     /*gap: 10px; Separacion entre items*/
-    min-height: 300px; /*Largo del contenedor*/
+    min-height: 100px; /*Largo del contenedor*/
     grid-template-rows: auto auto; /*Cantidad de filas y su tamaño*/
     grid-template-areas: "header header header"
                          "login login login";
@@ -37,13 +37,13 @@ body{
     size: 100px;
     width: 300px;
     margin-left: 200px;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .container header{
     grid-area: header;
     background-color: rgb(156, 172, 241);
-    height: 150px; /*Largo del item*/
+    height: 125px; /*Largo del item*/
     border-radius: 10px;
     border: 3px solid black;
 }
@@ -59,12 +59,12 @@ h1{
 .container .login {
     grid-area: login;
     background-color:rgb(166, 179, 221);
-    height: 600px; /*Largo del item*/
-    width: 600px; /*Ancho del item*/
+    height: 550px; /*Largo del item*/
+    width: 570px; /*Ancho del item*/
     /*margin-top: 400px; Esto es la diferencia con el espacio exterior*/
     /*margin: 85px 0px 0px 625px; Arriba / Derecha / Abajo / Izquierda */
-    margin-left: 650px; /*Mueve a la derecha*/
-    margin-top: 100px; /*Mueve hacia abajo*/
+    margin-left: 450px; /*Mueve a la derecha*/
+    margin-top: 50px; /*Mueve hacia abajo*/
     border-radius: 100px;
     border: 3px solid black; /* Borde del contenedor 'solid' le da esa remarcado*/
 }
@@ -105,13 +105,17 @@ button:hover{
     color: white;
 }
 
-@media (max-width: 769px) {
+@media (max-width: 480px) {
+  /* Estilos para móviles pequeños */
+}
+
+@media (max-width: 767px) {
     .container {
     display: grid;
     grid-template-rows: auto auto;
     grid-template-areas:
-      "header"
-      "login";
+      "header header header"
+      "login login login";
     justify-content: center;
     padding: 20px;
   }
@@ -119,8 +123,6 @@ button:hover{
   .container header {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
   }
 
   .container header h1 {
@@ -136,7 +138,7 @@ button:hover{
 
   .container header img {
     width: 200px;
-    margin: 10px 0px 10px -250px;
+    margin: 10px 0px 10px -2500px;
   }
 
   .container .login {
