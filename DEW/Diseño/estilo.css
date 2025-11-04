@@ -11,20 +11,11 @@ body{
     display: grid;
     /*justify-content: center;  centra los items del container en el eje central*/
     /*gap: 10px; Separacion entre items*/
-    min-height: 100px; /*Largo del contenedor*/
+    min-height: 300px; /*Largo del contenedor*/
     grid-template-rows: auto auto; /*Cantidad de filas y su tamaño*/
     grid-template-areas: "header header header"
                          "login login login";
-
-}
-
-.container header p{
-  display: flex;
-  justify-content: flex-end; /* lo empuja a la derecha */
-  font-size: 15px;
-  color: black;
-  margin-top: -50px;
-  margin-right: 30px; /* ajusta según lo que necesites */
+    grid-template-rows: auto auto;
 }
 
 .container header h1{
@@ -33,17 +24,24 @@ body{
     margin-top: -70px;
 }
 
-.container header img{
+.container header img.CIF{
     size: 100px;
     width: 300px;
     margin-left: 200px;
     margin-top: 10px;
 }
 
+.container header img.Gobierno{
+    size: 100px;
+    width: 300px;
+    margin-left: 1225px;
+    margin-top: -170px;
+}
+
 .container header{
     grid-area: header;
     background-color: rgb(156, 172, 241);
-    height: 125px; /*Largo del item*/
+    height: 150px; /*Largo del item*/
     border-radius: 10px;
     border: 3px solid black;
 }
@@ -59,14 +57,14 @@ h1{
 .container .login {
     grid-area: login;
     background-color:rgb(166, 179, 221);
-    height: 550px; /*Largo del item*/
-    width: 570px; /*Ancho del item*/
+    height: 600px; /*Largo del item*/
+    width: 600px; /*Ancho del item*/
     /*margin-top: 400px; Esto es la diferencia con el espacio exterior*/
     /*margin: 85px 0px 0px 625px; Arriba / Derecha / Abajo / Izquierda */
-    margin-left: 450px; /*Mueve a la derecha*/
-    margin-top: 50px; /*Mueve hacia abajo*/
+    margin-left: 650px; /*Mueve a la derecha*/
+    margin-top: 100px; /*Mueve hacia abajo*/
     border-radius: 100px;
-    border: 3px solid black; /* Borde del contenedor 'solid' le da esa remarcado*/
+    border: 3px solid black; 
 }
 
 label{
@@ -74,15 +72,15 @@ label{
     font-size: 25px;
     font-weight: bold;
     color: black;
-    margin-bottom: 30px;/*Separa el label de otros elementos verticalmente*/
-    margin-left: 90px; /*Separa el label de otros elementos horizontalmente*/
+    margin-bottom: 30px;
+    margin-left: 90px; 
 }   
 
 input{
     display: flex;
     height: 30px;
     width: 400px; 
-    border: 1px solid black; /* Los bordes tienen un grosor mas fuerte de negro*/
+    border: 1px solid black; 
     margin-left: 90px;
     margin-bottom: 20px;
     border: 1px solid black;
