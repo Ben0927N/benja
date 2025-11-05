@@ -1,3 +1,5 @@
+const API_URL = "https://localhost:3000"
+
 async function obtenerProductos() {
     try {
         const response = await fetch('https:///productos');

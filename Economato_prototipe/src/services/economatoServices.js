@@ -1,14 +1,24 @@
-const URL_API = 'http://localhost:3000/'
+const URL_API = 'http://localhost:3000'
 
-const tipo = ['proveedores', 'categorias', 'productos']
-
-export async function getproducto(tipo) {
+export async function getproducto() {
     try {
-        if (tipo == 'productos'){
-            const response = await fetch(`${URL_API}${tipo}`)
+            const response = await fetch(`${URL_API}/producto`)
             if(!response.ok){
                 throw new Error('Error al obtener los proveedores')
-            }
+            const data = await response.json()
+            return data
+        }
+    } catch  (error) {
+        console.log(error)
+        return  []
+    }
+}
+
+export async function getCategorias() {
+    try {
+            const response = await fetch(`${URL_API}/categorias`)
+            if(!response.ok){
+                throw new Error('Error al obtener los proveedores')
             const data = await response.json()
             return data
         }
