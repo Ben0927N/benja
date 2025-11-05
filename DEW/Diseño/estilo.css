@@ -102,24 +102,34 @@ button:hover{
 
 .container footer{ grid-area:footer; color: black;}
 
-@media (max-width: 480px) {
+@media (max-width: 375px) {
     .container {
         display: grid;
         grid-template-areas: 
             "header header header"
             "login login login";
         grid-template-rows: auto auto;
-        justify-content: center;
-        padding: 10px;
     }
 
     .container header{
-        display: flex;
-        flex-direction: column;
-        height: 120px;
+     grid-area: header;
+     width: 50px;
     }
 
-  
+    .container header img.CIF {
+     margin-left: 10px;
+     width: 150px;
+    }
+
+    .container header img.Gobierno {
+     margin-left: 470px;
+     width: 150px;
+    }
+
+    .container header h2{
+     margin-right: 50px;
+     width: 30px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -133,7 +143,7 @@ button:hover{
 
   .container header {
      grid-area: header;
-     width: 750px;
+     width: 700px;
   }
 
   .container header img.CIF {
@@ -141,15 +151,19 @@ button:hover{
   }
 
   .container header img.Gobierno {
-    margin-left: 550px;
+    margin-left: 470px;
   }
 
   .container header h2{
-    margin-left: 300px;
+    margin-left: 250px;
   }
 
   .container .login{
     grid-area: login;
     margin-left: 60px;
+  }
+
+  .container footer p{
+    margin-left: -500px;
   }
 }
