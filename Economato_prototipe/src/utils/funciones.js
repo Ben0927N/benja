@@ -1,4 +1,5 @@
 export function filtrarPorCategoria(productos, categoria) {
+  console.log(productos)
   return productos.filter(p=>p.categoria?.nombre?.toLowerCase() == categoria.toLowerCase())
 }
 
