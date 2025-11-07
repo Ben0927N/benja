@@ -98,6 +98,42 @@ button:hover{
 
 .container footer{ grid-area:footer; color: black;}
 
+@media (max-width: 768px) {
+    .container {
+     display: grid;
+     grid-template-rows: auto auto;
+     grid-template-areas:
+         "header header header"
+         "login login login";
+  }
+
+  .container header {
+     grid-area: header;
+     width: 700px;
+  }
+
+  .container header img.CIF {
+    margin-left: 30px;
+  }
+
+  .container header img.Gobierno {
+    margin-left: 470px;
+  }
+
+  .container header h2{
+    margin-left: 250px;
+  }
+
+  .container .login{
+    grid-area: login;
+    margin-left: 60px;
+  }
+
+  .container footer p{
+    margin-left: -500px;
+  }
+}
+
 @media (max-width: 375px) {
     body {
         font-size: 14px;
@@ -159,40 +195,4 @@ button:hover{
         font-size: 12px;
         margin-top: 20px;
     }
-}
-
-@media (max-width: 768px) {
-    .container {
-     display: grid;
-     grid-template-rows: auto auto;
-     grid-template-areas:
-         "header header header"
-         "login login login";
-  }
-
-  .container header {
-     grid-area: header;
-     width: 700px;
-  }
-
-  .container header img.CIF {
-    margin-left: 30px;
-  }
-
-  .container header img.Gobierno {
-    margin-left: 470px;
-  }
-
-  .container header h2{
-    margin-left: 250px;
-  }
-
-  .container .login{
-    grid-area: login;
-    margin-left: 60px;
-  }
-
-  .container footer p{
-    margin-left: -500px;
-  }
 }
