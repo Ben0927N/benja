@@ -3,7 +3,6 @@ body {
 }
 
 .container {
-    background-color: blue;
     display: grid;
     min-height: 500px;
     grid-template-areas: "head head head"
@@ -12,10 +11,10 @@ body {
     grid-template-rows: 100px 450px 120px;
 }
 
-.container header {grid-area: head; background-color: brown;}
-.container .menu {grid-area: menu; background-color: blueviolet;}
-.container .content {grid-area: content; background-color: cadetblue;}
-.container footer {grid-area: footer; background-color: yellow; display: flex; justify-content: center;}
+.container header {grid-area: head; background-color: rgb(181, 58, 58);}
+.container .menu {grid-area: menu; background-color: rgb(202, 61, 61);}
+.container .content {grid-area: content; background-color: rgb(233, 39, 39);}
+.container footer {grid-area: footer; background-color: rgb(199, 101, 101); display: flex; justify-content: center;}
 
 .container header h2{
     color: black;
