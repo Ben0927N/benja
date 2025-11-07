@@ -8,10 +8,8 @@ body{
 .container{
     background-color: transparent;
     display: grid;
-    /*justify-content: center;  centra los items del container en el eje central*/
-    /*gap: 10px; Separacion entre items*/
-    min-height: 300px; /*Largo del contenedor*/
-    grid-template-rows: auto auto; /*Cantidad de filas y su tamaño*/
+    min-height: 300px; 
+    grid-template-rows: auto auto; 
     grid-template-areas: "header header header"
                          "login login login"
                          "footer footer footer"; 
@@ -20,7 +18,7 @@ body{
 .container header{
     grid-area: header;
     background-color: rgb(199, 64, 64);
-    height: 100px; /*Largo del item*/
+    height: 100px; 
     border-radius: 10px;
     border: 3px solid black;
 }
@@ -49,12 +47,10 @@ body{
 .container .login {
     grid-area: login;
     background-color:rgb(199, 64, 64);
-    height: 500px; /*Largo del item*/
-    width: 600px; /*Ancho del item*/
-    /*margin-top: 400px; Esto es la diferencia con el espacio exterior*/
-    /*margin: 85px 0px 0px 625px; Arriba / Derecha / Abajo / Izquierda */
-    margin-left: 450px; /*Mueve a la derecha*/
-    margin-top: 20px; /*Mueve hacia abajo*/
+    height: 500px; 
+    width: 600px; 
+    margin-left: 450px; 
+    margin-top: 20px; 
     border-radius: 100px;
     border: 3px solid black; 
 }
@@ -103,32 +99,65 @@ button:hover{
 .container footer{ grid-area:footer; color: black;}
 
 @media (max-width: 375px) {
+    body {
+        font-size: 14px;
+        background-color: white;
+    }
+
     .container {
-        display: grid;
-        grid-template-areas: 
-            "header header header"
-            "login login login";
-        grid-template-rows: auto auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
     }
 
-    .container header{
-     grid-area: header;
-     width: 50px;
+    .container header {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 10px;
     }
 
-    .container header img.CIF {
-     margin-left: 10px;
-     width: 150px;
+    .container header h2 {
+        margin: 10px 0 0 0;
+        font-size: 20px;
+        justify-content: center;
     }
 
+    .container header img.CIF,
     .container header img.Gobierno {
-     margin-left: 470px;
-     width: 150px;
+        width: 100px;
+        margin: 5px auto;
+        display: block;
     }
 
-    .container header h2{
-     margin-right: 50px;
-     width: 30px;
+    .container .login {
+        width: 100%;
+        height: auto;
+        margin: 20px 0;
+        padding: 20px;
+        border-radius: 30px;
+    }
+
+    label {
+        font-size: 18px;
+        margin-left: 20px;
+    }
+
+    input {
+        width: 80%;
+        margin-left: 20px;
+    }
+
+    button {
+        width: 80%;
+        margin-left: 30px;
+    }
+
+    footer {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 20px;
     }
 }
 

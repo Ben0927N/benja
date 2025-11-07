@@ -1,6 +1,5 @@
 body {
     font-family:'Times New Roman', Times, serif;
-
 }
 
 .container {
@@ -10,34 +9,42 @@ body {
     grid-template-areas: "head head head"
                          "menu content content"
                          "footer footer footer";
-    grid-template-rows: 175px 600px 200px;
+    grid-template-rows: 100px 450px 120px;
 }
 
 .container header {grid-area: head; background-color: brown;}
 .container .menu {grid-area: menu; background-color: blueviolet;}
 .container .content {grid-area: content; background-color: cadetblue;}
-.container footer {grid-area: footer; background-color: yellow;}
 
-.container header p{
-  display: flex;
-  justify-content: flex-end; 
-  font-size: 15px;
-  color: black;
-  margin-top: -50px;
-  margin-right: 30px;
-}
-
-.container header h1{
+.container header h2{
+    color: black;
     display: flex;
-    margin-left: 525px;
+    margin-left: 650px;
     margin-top: -70px;
 }
 
-.container header img{
-    size: 100px;
-    width: 300px;
-    margin-left: 200px;
-    margin-top: 25px;
+.container header img.CIF{
+    size: 50px;
+    width: 200px;
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+.container header img.Gobierno{
+    size: 50px;
+    width: 200px;
+    margin-left: 1150px;
+    margin-top: -45px;
+}
+
+.container footer {
+    grid-area: footer; 
+    display: flex;
+    background-color: yellow; 
+    flex-direction: column;     
+    justify-content: center;    
+    align-items: center;       
+    text-align: center;  
 }
 
 @media(max-width: 760px){
