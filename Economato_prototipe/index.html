@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart Economato - Prototipo</title>
   <link rel="stylesheet" href="./assets/css/estilos.css">
   <script type="module" src="./src/controllers/almacen.js"></script>
-  
+
 </head>
+
 <body>
   <h1>Smart Economato - Prototipo</h1>
 
@@ -16,13 +18,13 @@
     <button id="btnBuscar">Buscar</button>
 
     <select id="categoriaSelect"></select>
-    
+
 
     <select id="ordenSelect">
       <option value="asc">Precio ascendente</option>
       <option value="desc">Precio descendente</option>
     </select>
-    
+
 
     <button id="btnStock">Comprobar stock</button>
     <button id="btnAllProducts">Mostrar todos</button>
@@ -31,15 +33,24 @@
   <table id="tablaProductos">
     <thead>
       <tr>
-        <th>ID</th><th>Nombre</th><th>Categoría</th><th>Precio (€)</th>
-        <th>Stock</th><th>Stock Mínimo</th><th>Proveedor</th><th>Isla</th>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Precio (€)</th>
+        <th>Stock</th>
+        <th>Stock Mínimo</th>
+        <th>Proveedor</th>
+        <th>Isla</th>
       </tr>
     </thead>
     <tbody></tbody>
     <tfoot>
-      <tr><td colspan="8" id="resumen"></td></tr>
+      <tr>
+        <td colspan="8" id="resumen"></td>
+      </tr>
     </tfoot>
   </table>
 
 </body>
+
 </html>

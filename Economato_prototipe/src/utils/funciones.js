@@ -4,7 +4,7 @@ export function filtrarPorCategoria(productos, categoria) {
 }
 
 export function buscarProducto(productos, nombre) {
-  //Normalizamos de alguna manera pero de momento lo dejo así
+  //Normalizamos de alguna manera pero de momento lo dejo así.
   return productos.filter(p=> p.nombre.includes(nombre))
 }
 

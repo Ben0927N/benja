@@ -1,0 +1,198 @@
+body{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 15px;
+    color: white;   
+    background-color: white;
+}
+
+.container{
+    background-color: transparent;
+    display: grid;
+    min-height: 300px; 
+    grid-template-rows: auto auto; 
+    grid-template-areas: "header header header"
+                         "login login login"
+                         "footer footer footer"; 
+}
+
+.container header{
+    grid-area: header;
+    background-color: rgb(199, 64, 64);
+    height: 100px; 
+    border-radius: 10px;
+    border: 3px solid black;
+}
+
+.container header h2{
+    color: black;
+    display: flex;
+    margin-left: 650px;
+    margin-top: -70px;
+}
+
+.container header img.CIF{
+    size: 50px;
+    width: 200px;
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+.container header img.Gobierno{
+    size: 50px;
+    width: 200px;
+    margin-left: 1150px;
+    margin-top: -45px;
+}
+
+.container .login {
+    grid-area: login;
+    background-color:rgb(199, 64, 64);
+    height: 500px; 
+    width: 600px; 
+    margin-left: 450px; 
+    margin-top: 20px; 
+    border-radius: 100px;
+    border: 3px solid black; 
+}
+
+.login h1{
+    color: black;
+    text-align: center;
+}
+
+label{
+    display: flex;
+    font-size: 25px;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 30px;
+    margin-left: 90px; 
+}   
+
+input{
+    display: flex;
+    height: 30px;
+    width: 400px; 
+    border: 1px solid black; 
+    margin-left: 90px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    border-radius: 5px; 
+}
+
+button{
+    display: flex;
+    background-color: transparent;
+    margin-top: 20px;
+    width: 400px;
+    height: 40px;
+    margin-left: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+button:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.container footer{ grid-area:footer; color: black;}
+
+@media (max-width: 768px) {
+    .container {
+     display: grid;
+     grid-template-rows: auto auto;
+     grid-template-areas:
+         "header header header"
+         "login login login";
+  }
+
+  .container header {
+     grid-area: header;
+     width: 700px;
+  }
+
+  .container header img.CIF {
+    margin-left: 30px;
+  }
+
+  .container header img.Gobierno {
+    margin-left: 470px;
+  }
+
+  .container header h2{
+    margin-left: 250px;
+  }
+
+  .container .login{
+    grid-area: login;
+    margin-left: 60px;
+  }
+
+  .container footer p{
+    margin-left: -500px;
+  }
+}
+
+@media (max-width: 375px) {
+    body {
+        font-size: 14px;
+        background-color: white;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .container header {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .container header h2 {
+        margin: 10px 0 0 0;
+        font-size: 20px;
+        justify-content: center;
+    }
+
+    .container header img.CIF,
+    .container header img.Gobierno {
+        width: 100px;
+        margin: 5px auto;
+        display: block;
+    }
+
+    .container .login {
+        width: 100%;
+        height: auto;
+        margin: 20px 0;
+        padding: 20px;
+        border-radius: 30px;
+    }
+
+    label {
+        font-size: 18px;
+        margin-left: 20px;
+    }
+
+    input {
+        width: 80%;
+        margin-left: 20px;
+    }
+
+    button {
+        width: 80%;
+        margin-left: 30px;
+    }
+
+    footer {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 20px;
+    }
+}
