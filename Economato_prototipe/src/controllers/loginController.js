@@ -1,22 +1,23 @@
-import { authService } from "../services/authService";
+import { authService } from "../services/authService.js";
 
-document.addEventListener("DOMContentLoaded"), () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const form = document.getElementById('loginForm')
 
-    form.addEventListener("submit", xxxxx => {
+    const form = document.querySelector('.login')
 
-        
+    form.addEventListener("submit", async(event) => {
+
+        event.preventDefault()
         const usuario = document.getElementById('username').value
         const password = document.getElementById('password').value
 
-        try{
-            const user = authService.login(username, password)
+        try {
+            const user = await authService.login(username, password)
             window.location.href = 'index.html'
-        } catch(error) {
+        } catch (error) {
             console.log("Error")
         }
     }
-
     )
 }
+)
