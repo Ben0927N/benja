@@ -3,7 +3,7 @@ import { authService } from "../services/authService.js";
 document.addEventListener("DOMContentLoaded", () => {
 
 
-    const form = document.querySelector('.login')
+    const form = document.getElementsByClassName("login")
 
     form.addEventListener("submit", async(event) => {
 
