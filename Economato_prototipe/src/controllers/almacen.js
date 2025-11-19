@@ -14,15 +14,15 @@ const evenMap = [
   {selector: '#btnBuscar', event: 'click', handler: onBuscar},
   {selector: '#ordenSelect', event: 'change', handler: onOrdenar},
   {selector: '#btnAllProducts', event: 'click', handler: onShowAll},
-  {selector: '#categoriasSelect', event: 'change', handler: onfiltrar},
+  {selector: '#categoriaSelect', event: 'change', handler: onfiltrar},
 ]
 
-let productos = [];
+let productosCargados = [];
 let productosMostrados = [];
 
 async function inicializar() {
-  productos = await getproducto()
-  productosMostrados = [...productos]
+  productosCargados = await getproducto()
+  productosMostrados = [...productosCargados]
   let categorias = await getCategorias()
   renderizarTabla(productosMostrados)
   generarCategorias(categorias)
