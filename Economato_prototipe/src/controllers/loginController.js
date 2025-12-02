@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             const user = await authService.login(usuario, password)
-            window.location.href = 'index.html'
+            window.location.href = 'menu.html'
         } catch (error) {
             LoginUI.showMessage(error.message, "error")
         }
