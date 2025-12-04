@@ -20,14 +20,19 @@ const evenMap = [
 let productosCargados = [];
 let productosMostrados = [];
 
+//Inicialización principal
+
 async function inicializar() {
   productosCargados = await getproducto()
   productosMostrados = [...productosCargados]
   let categorias = await getCategorias()
+
   renderizarTabla(productosMostrados)
   generarCategorias(categorias)
   bindEvents(evenMap)
 }
+
+//Handlers (manejadores de eventos)
 
 function onBuscar() {
   const termino = inputBusqueda.value.trim()
@@ -52,6 +57,8 @@ function onShowAll() {
   selectCategoria.value = '';
   renderizarTabla(productosMostrados);
 }
+
+//Utilidades
 
 function bindEvents(events) {
   for (const {selector, event, handler, options} of events) {

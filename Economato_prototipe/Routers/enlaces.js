@@ -15,56 +15,56 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function cargarScript(src) {
-    const oldScript = document.querySelector('script[data-dynamic="true"]');
-    if (oldScript) oldScript.remove();
+  const oldScript = document.querySelector('script[data-dynamic="true"]');
+  if (oldScript) oldScript.remove();
 
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = src;
-    script.dataset.dynamic = "true";
-    document.body.appendChild(script);
-  }
+  const script = document.createElement("script");
+  script.type = "module";
+  // Añadimos un query string para evitar caché
+  script.src = `${src}?v=${Date.now()}`;
+  script.dataset.dynamic = "true";
+  document.body.appendChild(script);
+}
 
   async function cargarPagina(page) {
-    try {
-      const res = await fetch(`./pages/${page}.html`);
-      if (!res.ok) throw new Error("Página no encontrada");
-      const html = await res.text();
-      content.innerHTML = html;
+  try {
+    const res = await fetch(`./pages/${page}.html`);
+    if (!res.ok) throw new Error("Página no encontrada");
+    const html = await res.text();
+    content.innerHTML = html;
 
-      switch (page) {
-        case "AnadirProductos":
-          cargarCSS("./assets/css/productos.css");
-          cargarScript("./src/controllers/AnadirProductos.js");
-          break;
-        case "index":
-          cargarCSS("./assets/css/index.css");
-          cargarScript("./src/controllers/almacen.js"); 
-          
-          break;
-        case "usuarios":
-          cargarCSS("./assets/css/usuarios.css");
-          cargarScript("./src/controllers/usuarios.js");
-          break;
-        default:
-          cargarCSS("./assets/css/menu.css");
-      }
-
-      sidebar.classList.remove("open");
-
-      // ✅ Detectar si existe el botón de volver y darle funcionalidad
-      const btnVolver = document.getElementById("btnVolverProductos");
-      if (btnVolver) {
-        btnVolver.addEventListener("click", e => {
-          e.preventDefault();
-          cargarPagina("index");
-        });
-      }
-
-    } catch (error) {
-      content.innerHTML = `<p style='color:red'>${error.message}</p>`;
+    switch (page) {
+      case "AnadirProductos":
+        cargarCSS("./assets/css/productos.css");
+        cargarScript("./src/controllers/AnadirProductos.js");
+        break;
+      case "tabla":
+        cargarCSS("./assets/css/tabla.css");
+        cargarScript("./src/controllers/almacen.js");
+        break;
+      case "usuarios":
+        cargarCSS("./assets/css/usuarios.css");
+        cargarScript("./src/controllers/usuarios.js");
+        break;
+      default:
+        cargarCSS("./assets/css/main.css");
     }
+
+    sidebar.classList.remove("open");
+
+    // Detectar si existe el botón de volver y darle funcionalidad
+    const btnVolver = document.getElementById("btnVolverProductos");
+    if (btnVolver) {
+      btnVolver.addEventListener("click", e => {
+        e.preventDefault();
+        cargarPagina("tabla");  // vuelve a la tabla
+      });
+    }
+
+  } catch (error) {
+    content.innerHTML = `<p style='color:red'>${error.message}</p>`;
   }
+}
 
   // Listener para el menú lateral
   links.forEach(link => {
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Listener para el botón "Añadir productos" dentro de index.html
+  // Listener para el botón "Añadir productos" dentro de tabla.html
   document.addEventListener("click", e => {
     if (e.target && e.target.id === "AnadirProductos") {
       e.preventDefault();
