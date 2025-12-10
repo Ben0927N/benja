@@ -1,9 +1,6 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const links = document.querySelectorAll(".sidebar a");
-  const content = document.getElementById("content");
-  const sidebar = document.getElementById("sidebar");
+// Archivo: Routers/enlaces.js
 
-  function cargarCSS(href) {
+function cargarCSS(href) {
     const oldLink = document.querySelector('link[data-dynamic="true"]');
     if (oldLink) oldLink.remove();
 
@@ -12,78 +9,60 @@ document.addEventListener("DOMContentLoaded", () => {
     link.href = href;
     link.dataset.dynamic = "true";
     document.head.appendChild(link);
-  }
-
-  function cargarScript(src) {
-  const oldScript = document.querySelector('script[data-dynamic="true"]');
-  if (oldScript) oldScript.remove();
-
-  const script = document.createElement("script");
-  script.type = "module";
-  // Añadimos un query string para evitar caché
-  script.src = `${src}?v=${Date.now()}`;
-  script.dataset.dynamic = "true";
-  document.body.appendChild(script);
 }
 
-  async function cargarPagina(page) {
-  try {
-    const res = await fetch(`./pages/${page}.html`);
-    if (!res.ok) throw new Error("Página no encontrada");
-    const html = await res.text();
-    content.innerHTML = html;
+function cargarScript(src) {
+    return new Promise((resolve) => {
+        const oldScript = document.querySelector('script[data-dynamic="true"]');
+        if (oldScript) oldScript.remove();
 
-    switch (page) {
-      case "AnadirProductos":
-        cargarCSS("./assets/css/productos.css");
-        cargarScript("./src/controllers/AnadirProductos.js");
-        break;
-      case "tabla":
-        cargarCSS("./assets/css/tabla.css");
-        cargarScript("./src/controllers/almacen.js");
-        break;
-      case "usuarios":
-        cargarCSS("./assets/css/usuarios.css");
-        cargarScript("./src/controllers/usuarios.js");
-        break;
-      default:
-        cargarCSS("./assets/css/main.css");
-    }
+        const script = document.createElement("script");
+        script.type = "module";
+        script.src = `${src}?v=${Date.now()}`;
+        script.dataset.dynamic = "true";
 
-    sidebar.classList.remove("open");
+        script.onload = resolve;
+        script.onerror = () => {
+            console.error(`Error al cargar el script: ${src}`);
+            resolve();
+        };
 
-    // Detectar si existe el botón de volver y darle funcionalidad
-    const btnVolver = document.getElementById("btnVolverProductos");
-    if (btnVolver) {
-      btnVolver.addEventListener("click", e => {
-        e.preventDefault();
-        cargarPagina("tabla");  // vuelve a la tabla
-      });
-    }
-
-  } catch (error) {
-    content.innerHTML = `<p style='color:red'>${error.message}</p>`;
-  }
-}
-
-  // Listener para el menú lateral
-  links.forEach(link => {
-    link.addEventListener("click", e => {
-      e.preventDefault();
-      const page = link.dataset.page;
-
-      links.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-
-      cargarPagina(page);
+        document.body.appendChild(script);
     });
-  });
+}
 
-  // Listener para el botón "Añadir productos" dentro de tabla.html
-  document.addEventListener("click", e => {
-    if (e.target && e.target.id === "AnadirProductos") {
-      e.preventDefault();
-      cargarPagina("AnadirProductos");
+export async function cargarPagina(page) {
+    const content = document.getElementById("content");
+    const sidebar = document.getElementById("sidebar");
+
+    try {
+        const res = await fetch(`./pages/${page}.html`);
+        if (!res.ok) throw new Error(`Página ${page}.html no encontrada`);
+        const html = await res.text();
+        content.innerHTML = html;
+
+        switch (page) {
+            case "AnadirProductos":
+                cargarCSS("./assets/css/productos.css");
+                await cargarScript("./src/controllers/AnadirProductos.js"); 
+                break;
+            case "tabla":
+                cargarCSS("./assets/css/tabla.css");
+                await cargarScript("./src/controllers/almacen.js"); 
+                break;
+            case "usuarios":
+                cargarCSS("./assets/css/usuarios.css");
+                await cargarScript("./src/controllers/usuarios.js");
+                break;
+            default:
+                cargarCSS("./assets/css/main.css");
+        }
+
+        if (sidebar) sidebar.classList.remove("open");
+
+    } catch (error) {
+        console.error("Error al cargar la página:", error);
+        // Si el JSON Server no está activo, el error de la tabla se mostrará aquí
+        content.innerHTML = `<h2 style='color:red;'>Error al cargar: ${error.message}</h2>`;
     }
-  });
-});
+}

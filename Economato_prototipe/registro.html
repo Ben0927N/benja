@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="..\Economato_prototipe\assets\css\registro.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="..\Economato_prototipe\assets\Imagenes\candelaria.png" class="CIF"><br>
+            <h2>Smart Economato</h2>
+            <img src="..\Economato_prototipe\assets\Imagenes\GobiernoCanarias.png" class="Gobierno"><br>
+        </header>
+        <div class="login">
+            <h1>Crear Cuenta</h1>
+            <form id="registroForm">
+                <label for="reg_nombre">Nombre:</label><br>
+                <input type="text" id="reg_nombre" name="reg_nombre" required><br>
+
+                <label for="reg_username">Usuario:</label><br>
+                <input type="text" id="reg_username" name="reg_username" required><br>
+
+                <label for="reg_email">Email:</label><br>
+                <input type="email" id="reg_email" name="reg_email" required><br>
+
+                <label for="reg_password">Contraseña:</label><br>
+                <input type="password" id="reg_password" name="reg_password" required><br>
+
+                <label for="reg_password_confirm">Confirmar Contraseña:</label><br>
+                <input type="password" id="reg_password_confirm" name="reg_password_confirm" required><br>
+
+                <button type="submit">Registrarse</button>
+
+                <p class="register-text">
+                    ¿Ya tiene una cuenta?
+                    <a href="login.html" class="register-link">Iniciar Sesión</a>
+                </p>
+
+                <p id="registroMessage" class="message"></p>
+            </form>
+        </div>
+        <footer>
+            <p>Derechos de autor © 2025. Economato.</p>
+        </footer>
+    </div>
+    <script type="module" src="src/controllers/registroControllers.js"></script>
+</body>
+
+</html>

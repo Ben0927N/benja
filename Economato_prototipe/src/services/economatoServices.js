@@ -28,3 +28,39 @@ export async function getCategorias() {
         return []
     }
 }
+
+export async function agregarProductoAPI(producto) {
+    try {
+        const response = await fetch(`${URL_API}/productos`, {
+            method: 'POST', // Le dice al servidor que queremos GUARDAR un dato
+            headers: {
+                'Content-Type': 'application/json' // Indica que el cuerpo es JSON
+            },
+            body: JSON.stringify(producto) // Convierte el objeto JavaScript a texto JSON
+        })
+        if (!response.ok) {
+            throw new Error(`Error al guardar: ${response.statusText}`);
+        }
+        // Devuelve el objeto guardado (incluye el ID que JSON Server le asignó)
+        return await response.json(); 
+    } catch (error) {
+        console.error("Error al añadir producto:", error);
+        throw new Error(`Fallo al guardar: ${error.message}`);
+    }
+}
+
+export async function getProveedores() {
+    const URL_API = 'http://localhost:3000'
+    // La URL_API debe estar accesible aquí.
+    try {
+        const response = await fetch(`${URL_API}/proveedores`)
+        if (!response.ok) {
+            throw new Error('Error al obtener los proveedores')
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error("Fallo en getProveedores:", error)
+        return [] 
+    }
+}

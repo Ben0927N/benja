@@ -1,27 +1,93 @@
-body{
-    font-family:'Times New Roman', Times, serif;
-    font-size: 15px;
-    color: black;  
-    background-color: white;
-}
+/* Estilos para AñadirProductos.html */
 
-h1{
-    font-size: 50px;
-    text-align: center;
-    color: black;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
+/* Contenedor principal */
 .productos {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
 }
 
-label input {
-    display: grid;
-    
-}  
+/* Título */
+.productos h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 1.8rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+/* Estilo para los grupos de formulario */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Campos de entrada y selección */
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Importante para que el padding no cambie el ancho */
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Contenedor de botones para centrar y espaciar */
+.button-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Botón principal (Guardar) */
+.button-container button[type="submit"] {
+    flex-grow: 1; /* Para que ocupen el mismo ancho */
+    padding: 12px 20px;
+    background-color: #28a745; /* Verde para acción de guardar */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Botón secundario (Volver) */
+.button-container button#btnVolverProductos {
+    flex-grow: 1;
+    padding: 12px 20px;
+    background-color: #6c757d; /* Gris para acción secundaria */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container button#btnVolverProductos:hover {
+    background-color: #5a6268;
+}

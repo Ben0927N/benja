@@ -1,6 +1,8 @@
 export function renderizarTabla(datos) {
-  const tabla = document.querySelector('#tablaProductos tbody')
+  const tabla = document.querySelector('#tablaProductos tbody');
+  const resumen = document.getElementById('resumen');
   tabla.innerHTML = '';
+
   if (datos.length === 0) {
     tabla.innerHTML = '<tr><td colspan="8" style="text-align:center;">No se encontraron productos</td></tr>';
     resumen.textContent = '';
@@ -13,17 +15,40 @@ export function renderizarTabla(datos) {
     fila.innerHTML = `
       <td>${p.id}</td>
       <td>${p.nombre}</td>
-      <td>${p.categoria.nombre}</td>
-      <td>${p.precio.toFixed(2)}</td>
+      <td>${p.categoria?.nombre || ''}</td> 
+      <td>${(p.precio !== undefined && p.precio !== null) ? p.precio.toFixed(2) : '0.00'}</td>      
       <td>${p.stock}</td>
       <td>${p.stockMinimo}</td>
-      <td>${p.proveedor.nombre}</td>
-      <td>${p.proveedor.isla}</td>
-    `;
+      <td>${p.proveedor?.nombre || ''}</td>  
+      <td>${p.proveedor?.isla || ''}</td>    
+      `;
     tabla.appendChild(fila);
   });
 
   const totalProductos = datos.length;
-  const valorTotal = datos.reduce((acc, p) => acc + p.precio * p.stock, 0).toFixed(2);
+  const valorTotal = datos.reduce((acc, p) => acc + (p.precio || 0) * (p.stock || 0), 0).toFixed(2);
   resumen.textContent = `Productos mostrados: ${totalProductos} | Valor total del stock: ${valorTotal} €`;
+}
+
+export function generarProveedores(proveedores) {
+  const selectProveedor = document.getElementById('proveedorSelect');
+
+  if (!selectProveedor) {
+    console.error("El elemento 'proveedorSelect' no fue encontrado en el DOM.");
+    return;
+  }
+
+  selectProveedor.textContent = ''
+  const opcionDefault = document.createElement('option')
+  opcionDefault.value = ''
+  opcionDefault.textContent = '--- Proveedor ---'
+  selectProveedor.appendChild(opcionDefault)
+
+  proveedores.forEach(proveedor => {
+    const option = document.createElement('option')
+    option.value = proveedor.nombre
+    option.dataset.isla = proveedor.isla || 'default';
+    option.textContent = proveedor.nombre
+    selectProveedor.appendChild(option)
+  });
 }

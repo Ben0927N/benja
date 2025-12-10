@@ -20,6 +20,10 @@ const evenMap = [
 let productosCargados = [];
 let productosMostrados = [];
 
+export function agregarProducto(nuevo) {
+  productosCargados.push(nuevo);
+}
+
 //Inicialización principal
 
 async function inicializar() {
