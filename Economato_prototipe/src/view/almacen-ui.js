@@ -1,6 +1,12 @@
 export function renderizarTabla(datos) {
   const tabla = document.querySelector('#tablaProductos tbody');
   const resumen = document.getElementById('resumen');
+
+  if (!tabla || !resumen) {
+      console.warn("renderizarTabla: Elementos de la tabla no encontrados. Cancelando renderizado.");
+      return; 
+  }
+
   tabla.innerHTML = '';
 
   if (datos.length === 0) {

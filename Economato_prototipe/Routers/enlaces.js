@@ -16,9 +16,12 @@ function cargarScript(src) {
 
         const script = document.createElement("script");
         script.type = "module";
-        script.src = `${src}?v=${Date.now()}`;
+        const pathArray = window.location.pathname.split('/');
+        const projectBase = pathArray.slice(0, pathArray.indexOf('Economato_prototipe') + 1).join('/');
+        const absoluteSrc = projectBase + src.substring(1);
+        script.src = `${absoluteSrc}?v=${Date.now()}`;
         script.dataset.dynamic = "true";
-
+        
         script.onload = resolve;
         script.onerror = () => {
             console.error(`Error al cargar el script: ${src}`);
@@ -60,8 +63,9 @@ export async function cargarPagina(page) {
                 cargarCSS("./assets/css/HacerPedido.css"); 
                 await cargarScript("./src/controllers/HacerPedido.js"); 
                 break;
-            case "verPedidosTabla":
-                cargarCSS("./assets/css/tabla.css"); 
+            case "verPedidos":
+                cargarCSS("./assets/css/VerPedidos.css"); 
+                await cargarScript("./src/controllers/VerPedidos.js");
                 break;
             default:
                 cargarCSS("./assets/css/main.css");
@@ -71,7 +75,6 @@ export async function cargarPagina(page) {
 
     } catch (error) {
         console.error("Error al cargar la página:", error);
-        // Si el JSON Server no está activo, el error de la tabla se mostrará aquí
         content.innerHTML = `<h2 style='color:red;'>Error al cargar: ${error.message}</h2>`;
     }
 }

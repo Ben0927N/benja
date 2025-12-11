@@ -64,3 +64,43 @@ export async function getProveedores() {
         return [] 
     }
 }
+
+export async function guardarNuevoPedidoAPI(pedido) {
+    const URL_API = 'http://localhost:3000'
+    try {
+        const response = await fetch(`${URL_API}/pedidos`, {
+            method: 'POST', // Queremos GUARDAR un nuevo recurso
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pedido) // El objeto del pedido
+        })
+        if (!response.ok) {
+            throw new Error(`Error al guardar el pedido: ${response.statusText}`);
+        }
+        return await response.json(); 
+    } catch (error) {
+        console.error("Error al añadir pedido:", error);
+        throw new Error(`Fallo al guardar el pedido: ${error.message}`);
+    }
+}
+
+export async function guardarNuevoPedidoAPI(pedido) {
+    const URL_API = 'http://localhost:3000'
+    try {
+        const response = await fetch(`${URL_API}/pedidos`, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(pedido)
+        })
+        if (!response.ok) {
+            throw new Error(`Error al guardar el pedido: ${response.statusText}`);
+        }
+        return await response.json(); 
+    } catch (error) {
+        console.error("Error al añadir pedido:", error);
+        throw new Error(`Fallo al guardar el pedido: ${error.message}`);
+    }
+}

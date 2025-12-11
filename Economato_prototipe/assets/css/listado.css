@@ -44,11 +44,14 @@ button:hover {
     background: #005fa3;
 }
 
-table {
+.tabla-responsive {
     width: 100%;
-    border-collapse: collapse;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    overflow-x: auto; 
+    margin-top: 1.5rem;
+}
+
+table {
+    min-width: 750px; 
 }
 
 th,
@@ -104,4 +107,70 @@ tfoot td {
     font-weight: bold;
     cursor: default;
     border-color: #0077cc;
+}
+
+@media (max-width: 760px) {
+    .controles {
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .listado-view {
+        padding: 0.5rem; 
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    th, td {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9em;
+    }
+
+    .controles input,
+    .controles select,
+    .controles button {
+        width: 100%; 
+        max-width: 350px; 
+    }
+    
+    .page-numbers button {
+        padding: 0.5rem 0.8rem;
+        min-width: 35px;
+    }
+
+    .page-numbers button {
+        padding: 0.5rem 0.8rem;
+        min-width: 35px;
+    }
+}
+
+@media (max-width: 375px) {
+    h2 {
+        font-size: 1.2rem;
+    }
+    
+    th, td {
+        padding: 0.3rem 0.5rem;
+        font-size: 0.8em;
+    }
+
+    .controles input,
+    .controles select,
+    .controles button {
+        font-size: 0.8rem;
+    }
+    
+    .page-numbers button {
+        padding: 0.3rem 0.5rem;
+        min-width: 25px;
+        font-size: 0.7rem;
+    }
+    
+    .page-numbers button {
+        padding: 0.4rem 0.6rem;
+        min-width: 30px;
+        font-size: 0.8rem;
+    }
 }

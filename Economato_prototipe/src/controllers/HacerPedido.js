@@ -1,35 +1,91 @@
 import { cargarPagina } from '../Routers/enlaces.js';
+import { obtenerTodosLosProveedores } from '../services/proveedoresService.js';
+import { guardarNuevoPedidoAPI } from '../services/economatoServices.js'; 
 
-function inicializarHacerPedido() {
-    // 1. Obtener los botones de navegación
+function cargarProveedores(proveedores) {
+    // 🌟 CORRECCIÓN DEL ID: usamos 'proveedorPedido' para que coincida con HacerPedido.html
+    const selectProveedor = document.getElementById('proveedorPedido'); 
+
+    if (!selectProveedor) {
+        console.error("Elemento 'proveedorPedido' no encontrado en HacerPedido.html.");
+        return;
+    }
+    
+    selectProveedor.innerHTML = '<option value="">-- Seleccionar Proveedor --</option>';
+
+    proveedores.forEach(proveedor => {
+        const option = document.createElement('option');
+        option.value = proveedor.id; 
+        option.textContent = proveedor.nombre;
+        selectProveedor.appendChild(option);
+    });
+}
+
+// 🌟 FUNCIÓN PARA MANEJAR EL ENVÍO DEL FORMULARIO
+async function onSubmitPedido(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const fecha = document.getElementById('fechaPedido').value;
+    const proveedorId = document.getElementById('proveedorPedido').value;
+    const items = document.getElementById('itemsPedido').value.trim();
+    
+    if (!fecha || !proveedorId || !items) {
+        alert("Todos los campos del pedido son obligatorios.");
+        return;
+    }
+
+    const nuevoPedido = {
+        fecha: fecha,
+        proveedorId: proveedorId, 
+        items: items,
+        estado: "Pendiente", 
+        timestamp: Date.now() 
+    };
+
+    try {
+        await guardarNuevoPedidoAPI(nuevoPedido);
+        alert("¡Pedido guardado con éxito!");
+        form.reset(); 
+        cargarPagina('verPedidosTabla'); 
+    } catch (error) {
+        alert(`Error al guardar el pedido. Detalles: ${error.message}`);
+    }
+}
+
+
+async function inicializarHacerPedido() {
+    // 1. Cargar proveedores de forma asíncrona
+    try {
+        const listaProveedores = await obtenerTodosLosProveedores();
+        cargarProveedores(listaProveedores);
+    } catch (error) {
+        console.error("Error al inicializar la lista de proveedores:", error);
+    }
+    
+    // 2. Lógica de botones (se mantiene)
     const btnVolver = document.getElementById('btnVolverPedidos');
     const btnVerPedidos = document.getElementById('btnIrVerPedidos');
 
-    // El ID que usamos para la vista de los dos botones cuadrados
-    const VISTA_PEDIDOS_MENU = 'pedidos'; 
-    // El ID que usarías para la tabla de pedidos
-    const VISTA_VER_PEDIDOS = 'verPedidosTabla'; 
-
-    // 2. Asignar evento al botón "Volver"
     if (btnVolver) {
         btnVolver.addEventListener('click', (e) => {
             e.preventDefault();
-            // Volver al menú de pedidos (los dos botones cuadrados)
-            cargarPagina(VISTA_PEDIDOS_MENU); 
+            cargarPagina('pedidos'); 
         });
     }
 
-    // 3. Asignar evento al botón "Ver Pedidos"
     if (btnVerPedidos) {
         btnVerPedidos.addEventListener('click', (e) => {
             e.preventDefault();
-            // Ir a la vista de la tabla de todos los pedidos
-            cargarPagina(VISTA_VER_PEDIDOS); 
+            cargarPagina('verPedidosTabla'); 
         });
     }
 
-    // Nota: Aquí iría la lógica para cargar proveedores en el select,
-    // y la lógica para manejar el envío del formulario (btnGuardarPedido).
+    // 3. 🌟 ADICIÓN: Añadir el listener de envío al formulario
+    const form = document.getElementById('formNuevoPedido');
+    if (form) {
+        form.addEventListener('submit', onSubmitPedido); 
+    }
 }
 
 inicializarHacerPedido();
