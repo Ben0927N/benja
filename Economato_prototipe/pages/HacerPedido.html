@@ -1,0 +1,27 @@
+<div class="formulario-pedido-view">
+    <h2>Realizar Nuevo Pedido</h2>
+
+    <form id="formNuevoPedido" class="formulario-container">
+        <label for="fechaPedido">Fecha:</label>
+        <input type="date" id="fechaPedido" required>
+        
+        <label for="proveedorPedido">Proveedor:</label>
+        <select id="proveedorPedido" required>
+            <option value="">--- Seleccionar Proveedor ---</option>
+            </select>
+        
+        <label for="itemsPedido">Productos a Pedir (Ej: Tomate: 10kg, Leche: 5L):</label>
+        <textarea id="itemsPedido" rows="5" placeholder="Ingrese la lista de productos y cantidades a pedir." required></textarea>
+
+        <button type="submit" id="btnGuardarPedido" class="btn-principal-formulario">Guardar Pedido</button>
+    </form>
+    
+    <div class="controles-navegacion-pedido">
+        <button id="btnVolverPedidos" class="btn-secundario-formulario">
+            < Volver
+        </button>
+        <button id="btnIrVerPedidos" class="btn-secundario-formulario">
+            Ver Pedidos >
+        </button>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+body {
+    font-family: system-ui, sans-serif;
+    background: #f8fafc;
+    margin: 2rem;
+}
+
+h1 { 
+    text-align: center;
+    color: #005fa3;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+.controles { 
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+input,
+select,
+button {
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+}
+
+button {
+    background: #0077cc;
+    color: white;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #005fa3;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background: #e0e0e0; 
+}
+
+tr.alerta {
+    background: #ffe4e1;
+}
+
+tfoot td {
+    font-weight: bold;
+    background: #f4f4f4;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.pagination-controls-numeros {
+    display: flex;
+    justify-content: center; 
+    gap: 8px; 
+    margin-top: 1.5rem;
+}
+
+.page-numbers button {
+    background: white; 
+    color: #0077cc; 
+    border: 1px solid #0077cc;
+    padding: 0.6rem 1rem;
+    min-width: 40px; 
+    transition: 0.2s;
+    cursor: pointer;
+    font-weight: normal;
+}
+
+.page-numbers button:hover:not(.active) {
+    background: #e6f7ff; 
+}
+
+.page-numbers button.active {
+    background: #0077cc; 
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    border-color: #0077cc;
+}

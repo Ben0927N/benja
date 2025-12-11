@@ -1496,6 +1496,32 @@
         "id": 3,
         "nombre": "Carnicerías Selectas del Norte"
       }
+    },
+    {
+      "id": "51",
+      "nombre": "aji",
+      "categoria": {
+        "nombre": "Verduras y Hortalizas"
+      },
+      "precio": 12,
+      "stock": 20,
+      "minimo": 5,
+      "proveedor": {
+        "nombre": "Frutas y Verduras Frescas SL"
+      }
+    },
+    {
+      "id": "52",
+      "nombre": "calabaza",
+      "categoria": {
+        "nombre": "Verduras y Hortalizas"
+      },
+      "precio": 10,
+      "stock": 50,
+      "minimo": 5,
+      "proveedor": {
+        "nombre": "Frutas y Verduras Frescas SL"
+      }
     }
   ]
 }

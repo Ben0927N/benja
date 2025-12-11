@@ -15,8 +15,8 @@ export function renderizarTabla(datos) {
     fila.innerHTML = `
       <td>${p.id}</td>
       <td>${p.nombre}</td>
-      <td>${p.categoria?.nombre || ''}</td> 
-      <td>${(p.precio !== undefined && p.precio !== null) ? p.precio.toFixed(2) : '0.00'}</td>      
+      <td>${p.categoria?.nombre || ''}</td>  
+      <td>${(p.precio !== undefined && p.precio !== null) ? p.precio.toFixed(2) : '0.00'}</td>
       <td>${p.stock}</td>
       <td>${p.stockMinimo}</td>
       <td>${p.proveedor?.nombre || ''}</td>  

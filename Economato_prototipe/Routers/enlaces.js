@@ -1,5 +1,3 @@
-// Archivo: Routers/enlaces.js
-
 function cargarCSS(href) {
     const oldLink = document.querySelector('link[data-dynamic="true"]');
     if (oldLink) oldLink.remove();
@@ -44,15 +42,26 @@ export async function cargarPagina(page) {
         switch (page) {
             case "AnadirProductos":
                 cargarCSS("./assets/css/productos.css");
-                await cargarScript("./src/controllers/AnadirProductos.js"); 
+                await cargarScript("./src/controllers/AnadirProductos.js");
                 break;
             case "tabla":
                 cargarCSS("./assets/css/tabla.css");
-                await cargarScript("./src/controllers/almacen.js"); 
+                await cargarScript("./src/controllers/almacen.js");
                 break;
-            case "usuarios":
-                cargarCSS("./assets/css/usuarios.css");
-                await cargarScript("./src/controllers/usuarios.js");
+            case "listado":
+                cargarCSS("./assets/css/listado.css");
+                await cargarScript("./src/controllers/listado.js");
+                break;
+            case "pedidos":
+                cargarCSS("./assets/css/pedidos.css"); 
+                await cargarScript("./src/controllers/pedidos.js"); 
+                break;
+            case "hacerPedido":
+                cargarCSS("./assets/css/HacerPedido.css"); 
+                await cargarScript("./src/controllers/HacerPedido.js"); 
+                break;
+            case "verPedidosTabla":
+                cargarCSS("./assets/css/tabla.css"); 
                 break;
             default:
                 cargarCSS("./assets/css/main.css");

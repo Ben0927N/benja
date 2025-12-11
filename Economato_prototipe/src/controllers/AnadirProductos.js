@@ -54,7 +54,6 @@ async function inicializarFormulario() {
             const selectedProveedorOption = proveedorSelect.options[proveedorSelect.selectedIndex];
             const categoriaValue = categoriaSelect.value.trim();
             const proveedorValue = selectedProveedorOption.value.trim();
-            const islaValue = selectedProveedorOption.dataset.isla || '';
 
             // Se ha eliminado la lógica para calcular islaValue
 
@@ -72,13 +71,11 @@ async function inicializarFormulario() {
                 minimo: parseInt(document.getElementById("minimo").value),
                 proveedor: {
                     nombre: proveedorValue,
-                    isla: islaValue
                 }
             };
 
             try {
                 await agregarProductoAPI(nuevoProducto);
-                alert("Producto añadido correctamente");
                 cargarPagina("tabla");
 
             } catch (error) {
