@@ -1,16 +1,11 @@
 import { getproducto } from '../services/economatoServices.js';
 
-// --- CONFIGURACIÓN Y ESTADO GLOBAL ---
 const ITEMS_PER_PAGE = 10; 
 let currentPage = 1;
-let allProducts = []; // Contiene TODOS los productos cargados de la API
+let allProducts = []; 
 
-
-// --- 1. FUNCIÓN PRINCIPAL DE RENDERIZADO (Simplificada) ---
-// Ahora solo necesita la lista de productos COMPLETA.
-
-function renderizarProductos() { // ❌ Eliminar el argumento 'productos'
-    // Apuntamos al <tbody> y al <tfoot> con los nuevos IDs
+// Función de renderizado de productos 
+function renderizarProductos(productos) {
     const tabla = document.getElementById('productosPaginadosBody'); 
     const resumen = document.getElementById('resumenListado');
     
@@ -18,66 +13,69 @@ function renderizarProductos() { // ❌ Eliminar el argumento 'productos'
 
     tabla.innerHTML = '';
     
-    // 1. Calcular qué productos mostrar en la página actual usando allProducts
+    // 1. Calcular qué productos mostrar en la página actual
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
-    // Usamos el array global
-    const productosPagina = allProducts.slice(startIndex, endIndex); 
+    const productosPagina = productos.slice(startIndex, endIndex);
 
-    // 2. Crear las filas de la tabla (<tr>)
+    // 2. Crear las filas de la tabla
     productosPagina.forEach(p => {
         const fila = document.createElement('tr');
+
         if (p.stock < p.stockMinimo) fila.classList.add('alerta'); 
 
-        // RENDERIZADO DE FILAS (se mantiene la lógica)
+        // Rellenar la fila con los datos del producto
         fila.innerHTML = `
             <td>${p.id}</td>
             <td>${p.nombre}</td>
             <td>${p.categoria?.nombre || ''}</td>
-            <td>${(p.precio !== undefined && p.precio !== null) ? p.precio.toFixed(2) : '0.00'}</td>
-            <td>${p.stock}</td>
-            <td>${p.stockMinimo}</td>
+            <td>${p.precio ? p.precio.toFixed(2) : '0.00'}</td>
+            <td>${p.stock || 0}</td>
+            <td>${p.stockMinimo || 0}</td>
             <td>${p.proveedor?.nombre || ''}</td>
             <td>${p.proveedor?.isla || ''}</td>
         `;
         tabla.appendChild(fila);
     });
 
-    // 3. Renderizar resumen (se mantiene la lógica)
-    const totalProductos = allProducts.length;
-    resumen.textContent = `Mostrando ${startIndex + 1} a ${Math.min(endIndex, totalProductos)} de ${totalProductos} productos.`;
-    
-    // 4. Llama a la función de renderizado de controles después de actualizar la tabla
+    // 3. Crear los botones de página
     renderizarControlesPaginacion();
+
+    // 4. Mostrar resumen (simple)
+    const totalPages = Math.ceil(allProducts.length / ITEMS_PER_PAGE);
+    resumen.textContent = `Página ${currentPage} de ${totalPages} | Total de productos: ${allProducts.length}`;
 }
 
 
-// --- 2. FUNCIÓN DE RENDERIZADO DE CONTROLES (Simplificada y corregida) ---
+// Función de controles de paginación
 
 function renderizarControlesPaginacion() {
+    const totalPages = Math.ceil(allProducts.length / ITEMS_PER_PAGE);
     const pageNumbersDiv = document.getElementById('pageNumbers');
-    if (!pageNumbersDiv) return;
+
+    if (!pageNumbersDiv || totalPages <= 1) {
+        if (pageNumbersDiv) pageNumbersDiv.innerHTML = '';
+        return;
+    }
 
     pageNumbersDiv.innerHTML = '';
-    // Calcular el número total de páginas basado en el array global
-    const totalPages = Math.ceil(allProducts.length / ITEMS_PER_PAGE);
 
-    if (totalPages <= 1) return; // No mostrar controles si solo hay una página
-
+    // Bucle para crear un botón para cada página
     for (let i = 1; i <= totalPages; i++) {
         const btn = document.createElement('button');
         btn.textContent = i;
-        btn.classList.add('page-number-btn'); // Clase CSS
         
-        // Marcar la página actual
+        // Marcar el botón de la página actual como activo
         if (i === currentPage) {
             btn.classList.add('active');
         }
-
+        
+        // Evento para cambiar de página
         btn.addEventListener('click', () => {
             currentPage = i;
-            // 🌟 SOLO LLAMAMOS A renderizarProductos, que ya sabe qué datos usar
-            renderizarProductos(); 
+            renderizarProductos(allProducts);
+            renderizarControlesPaginacion(); 
+            document.getElementById('listadoProductosPaginados')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
         
         pageNumbersDiv.appendChild(btn);
@@ -85,8 +83,7 @@ function renderizarControlesPaginacion() {
 }
 
 
-// --- 3. FUNCIÓN DE INICIALIZACIÓN (Carga de Datos) ---
-
+// Función de inicialización (Carga de datos y renderizado inicial)
 async function inicializarListado() {
     const tabla = document.getElementById('productosPaginadosBody');
     if (!tabla) return;
@@ -94,7 +91,6 @@ async function inicializarListado() {
     try {
         tabla.innerHTML = '<tr><td colspan="8" style="text-align:center;">Cargando productos...</td></tr>';
         
-        // Carga todos los datos al array global
         allProducts = await getproducto(); 
         
         if (allProducts.length === 0) {
@@ -103,14 +99,12 @@ async function inicializarListado() {
         }
 
         currentPage = 1; 
-        // Llama a la función principal, que ahora usa allProducts y renderiza controles
-        renderizarProductos(); 
+        renderizarProductos(allProducts);
         
     } catch (error) {
         console.error("Error al inicializar el listado paginado:", error);
-        tabla.innerHTML = '<tr><td colspan="8" style="color:red; text-align:center;">Error al cargar los datos del servidor.</td></tr>';
+        tabla.innerHTML = '<tr><td colspan="8" style="color:red; text-align:center;">Fallo al cargar los datos del servidor.</td></tr>';
     }
 }
 
-// Ejecución al cargar el script
 inicializarListado();

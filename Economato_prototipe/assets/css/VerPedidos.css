@@ -1,13 +1,13 @@
 .controles-navegacion-pedido {
     display: flex;
-    justify-content: space-between; /* Espacia los botones */
-    max-width: 800px; /* Ajusta al ancho de tu tabla */
+    justify-content: space-between; 
+    max-width: 800px; 
     margin: 20px auto 40px auto;
     padding: 0 10px;
 }
 
 .btn-secundario-formulario {
-    background-color: #6c757d; /* Gris para Volver */
+    background-color: #6c757d; 
     color: white;
     border: none;
     padding: 10px 20px;
@@ -21,7 +21,7 @@
 }
 
 .btn-principal-formulario {
-    background-color: #28a745; /* Verde para acción principal */
+    background-color: #28a745;
     color: white;
     border: none;
     padding: 10px 20px;

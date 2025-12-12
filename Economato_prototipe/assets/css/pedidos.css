@@ -1,25 +1,23 @@
-.control-pedidos-container {
+/* Contenedor de los botones de pedidos */
+.controlPedidos {
     display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
-    gap: 20px; /* Espacio entre los botones */
+    justify-content: center; 
+    gap: 20px; 
     margin: 40px 0;
 }
 
-/* --- Estilo para Botones Cuadrados de Acción --- */
-.action-square-button {
-    /* Herencia del color y estilos de 'button' de tu CSS base */
-    background: #0077cc; 
+/* Estilo para los botones de acción */
+.boton {
+    background: #a41212; 
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 8px; /* Ligeramente más redondo para ser un "cuadrado" de acción */
+    border-radius: 8px; 
     transition: background 0.2s, transform 0.1s;
     
-    /* Propiedades para hacerlo cuadrado y grande */
-    width: 150px; /* Ancho deseado */
-    height: 150px; /* Altura igual al ancho */
+    width: 150px; 
+    height: 150px; 
     
-    /* Centrar texto si el contenido fuera más complejo */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +27,7 @@
     padding: 10px;
 }
 
-.action-square-button:hover {
-    background: #005fa3; /* Color oscuro al pasar el ratón (como tu CSS base) */
-    transform: translateY(-2px); /* Pequeño efecto de elevación */
+.boton:hover {
+    background: #a30000; 
+    transform: translateY(-2px); 
 }

@@ -1,5 +1,6 @@
 const URL_API = 'http://localhost:3000'
 
+// Función para obtener la lista de productos desde la API
 export async function getproducto() {
     try {
         const response = await fetch(`${URL_API}/productos`)
@@ -14,7 +15,7 @@ export async function getproducto() {
     }
 }
 
-
+// Función para obtener la lista de categorías desde la API
 export async function getCategorias() {
     try {
         const response = await fetch(`${URL_API}/categorias`)
@@ -29,19 +30,19 @@ export async function getCategorias() {
     }
 }
 
+// Función para agregar un nuevo producto a la API
 export async function agregarProductoAPI(producto) {
     try {
         const response = await fetch(`${URL_API}/productos`, {
-            method: 'POST', // Le dice al servidor que queremos GUARDAR un dato
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json' // Indica que el cuerpo es JSON
+                'Content-Type': 'application/json' 
             },
-            body: JSON.stringify(producto) // Convierte el objeto JavaScript a texto JSON
+            body: JSON.stringify(producto) 
         })
         if (!response.ok) {
             throw new Error(`Error al guardar: ${response.statusText}`);
         }
-        // Devuelve el objeto guardado (incluye el ID que JSON Server le asignó)
         return await response.json(); 
     } catch (error) {
         console.error("Error al añadir producto:", error);
@@ -49,9 +50,9 @@ export async function agregarProductoAPI(producto) {
     }
 }
 
+// Función para obtener la lista de proveedores desde la API
 export async function getProveedores() {
     const URL_API = 'http://localhost:3000'
-    // La URL_API debe estar accesible aquí.
     try {
         const response = await fetch(`${URL_API}/proveedores`)
         if (!response.ok) {
@@ -65,26 +66,7 @@ export async function getProveedores() {
     }
 }
 
-export async function guardarNuevoPedidoAPI(pedido) {
-    const URL_API = 'http://localhost:3000'
-    try {
-        const response = await fetch(`${URL_API}/pedidos`, {
-            method: 'POST', // Queremos GUARDAR un nuevo recurso
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(pedido) // El objeto del pedido
-        })
-        if (!response.ok) {
-            throw new Error(`Error al guardar el pedido: ${response.statusText}`);
-        }
-        return await response.json(); 
-    } catch (error) {
-        console.error("Error al añadir pedido:", error);
-        throw new Error(`Fallo al guardar el pedido: ${error.message}`);
-    }
-}
-
+// Función para guardar un nuevo pedido en la API
 export async function guardarNuevoPedidoAPI(pedido) {
     const URL_API = 'http://localhost:3000'
     try {
@@ -93,7 +75,7 @@ export async function guardarNuevoPedidoAPI(pedido) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(pedido)
+            body: JSON.stringify(pedido) 
         })
         if (!response.ok) {
             throw new Error(`Error al guardar el pedido: ${response.statusText}`);

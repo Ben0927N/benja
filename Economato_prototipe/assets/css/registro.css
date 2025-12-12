@@ -1,59 +1,53 @@
-/*
- * ---------------------------------------
- * Estilos base (Copia de login.css)
- * ---------------------------------------
- */
-body{
-    font-family:'Times New Roman', Times, serif;
+body {
+    font-family: 'Times New Roman', Times, serif;
     font-size: 15px;
-    color: white;   
-    background-color: white;
+    color: #333;   
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
-.container{
+.container {
     background-color: transparent;
     display: grid;
-    min-height: 300px; 
-    grid-template-rows: auto auto; 
-    grid-template-areas: "header header header"
-                         "login login login"
-                         "footer footer footer"; 
+    min-height: 100vh; 
+    grid-template-rows: auto 1fr auto; 
+    grid-template-areas: 
+        "header"
+        "login"
+        "footer"; 
 }
 
-/* Estilos del Header */
-.container header{
+/* Header */
+.container header {
     grid-area: header;
     background-color: rgb(199, 64, 64);
-    height: 100px; 
     border-radius: 10px;
     border: 3px solid black;
-}
-
-.container header h2{
-    color: black;
+    padding: 15px 40px;
     display: flex;
-    margin-left: 650px;
-    margin-top: -70px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.container header img.CIF{
-    size: 50px;
-    width: 200px;
-    margin-left: 100px;
-    margin-top: 10px;
+.container header h2 {
+    color: black;
+    font-size: 24px;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
 }
 
-.container header img.Gobierno{
-    size: 50px;
-    width: 200px;
-    margin-left: 1150px;
-    margin-top: -45px;
+.container header img.CIF,
+.container header img.Gobierno {
+    width: 150px;
+    height: auto;
 }
 
-/* --------------------------------------- */
-/* Estilos específicos de la caja de login/registro */
-/* --------------------------------------- */
-
+/* Login */
 .container .login {
     grid-area: login;
     display: flex;
@@ -63,19 +57,19 @@ body{
 }
 
 .login h1 {
-    color: #333; /* Un color oscuro para el título */
+    color: #333;
     margin-bottom: 20px;
     font-size: 24px;
 }
 
-/* Estilos del formulario de registro */
+/* Formulario */
 .login form {
     background-color: white;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px; /* Mayor ancho para más campos */
+    max-width: 400px; 
 }
 
 .login form label {
@@ -89,18 +83,18 @@ body{
 .login form input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 5px; /* Reducido para formularios largos */
+    margin-bottom: 10px; 
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* Importante para el padding */
+    box-sizing: border-box;
 }
 
-/* Botón de Registro */
+/* Botón */
 .login form button[type="submit"] {
     width: 100%;
     padding: 12px;
     margin-top: 20px;
-    background-color: #0077cc; /* Azul fuerte */
+    background-color: #780b11;
     color: white;
     border: none;
     border-radius: 4px;
@@ -110,10 +104,10 @@ body{
 }
 
 .login form button[type="submit"]:hover {
-    background-color: #005fa3;
+    background-color: #5a0d0d;
 }
 
-/* Mensajes de error/éxito */
+/* Mensajes */
 .message {
     margin-top: 10px;
     padding: 10px;
@@ -121,7 +115,7 @@ body{
     text-align: center;
     font-weight: bold;
     color: white;
-    display: block; /* Asegura que ocupe espacio */
+    display: block; 
 }
 
 .error {
@@ -132,32 +126,31 @@ body{
     background-color: #5cb85c; 
 }
 
-/* Estilos del pie de página */
-.container footer{
+/* Footer */
+
+.container footer {
     grid-area: footer;
     background-color: rgb(199, 64, 64);
-    height: 100px;
     border-radius: 10px;
     border: 3px solid black;
     text-align: center;
-    line-height: 100px;
+    padding: 15px;
 }
 
-.container footer p{
+.container footer p {
     color: black;
-    display: flex;
-    margin-left: 600px;
+    margin: 0;
 }
 
-/* Estilo para el enlace de "Iniciar Sesión" */
-.register-text {
+/* Enlaces dentro del formulario */
+.text {
     text-align: center;
     margin-top: 15px;
     font-size: 14px;
     color: #666;
 }
 
-.register-link {
+.link {
     color: #0077cc;
     text-decoration: none;
     font-weight: bold;
@@ -165,10 +158,39 @@ body{
     transition: color 0.2s;
 }
 
-.register-link:hover {
+.link:hover {
     color: #005fa3;
     text-decoration: underline;
 }
 
-/* Media Queries (Asegurando la Responsividad) */
-/* Copia y ajusta tus media queries de login.css para registro.css si las tienes. */
+/* Responsive */
+@media (max-width: 768px) {
+    .container header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .container header img.CIF,
+    .container header img.Gobierno {
+        width: 120px;
+    }
+
+    .container header h2 {
+        font-size: 20px;
+    }
+
+    .login form {
+        width: 90%;
+    }
+}
+@media (max-width: 480px) {
+    .container header img.CIF,
+    .container header img.Gobierno {
+        width: 100px;
+    }
+
+    .container header h2 {
+        font-size: 18px;
+    }
+}

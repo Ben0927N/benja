@@ -1,9 +1,8 @@
 import { authService } from "../services/authService.js";
 import { LoginUI } from "../view/login-ui.js";
 
+// Controlador para el manejo del login
 document.addEventListener("DOMContentLoaded", () => {
-
-
     const form = document.getElementById("login")
 
     form.addEventListener("submit", async (event) => {

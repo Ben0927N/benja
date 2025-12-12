@@ -1,3 +1,4 @@
+// Función para renderizar la tabla de productos
 export function renderizarTabla(datos) {
   const tabla = document.querySelector('#tablaProductos tbody');
   const resumen = document.getElementById('resumen');
@@ -15,9 +16,9 @@ export function renderizarTabla(datos) {
     return;
   }
 
+  // Rellenar la tabla con los datos de productos
   datos.forEach(p => {
     const fila = document.createElement('tr');
-    if (p.stock < p.stockMinimo) fila.classList.add('alerta');
     fila.innerHTML = `
       <td>${p.id}</td>
       <td>${p.nombre}</td>
@@ -36,6 +37,7 @@ export function renderizarTabla(datos) {
   resumen.textContent = `Productos mostrados: ${totalProductos} | Valor total del stock: ${valorTotal} €`;
 }
 
+// Función para generar las opciones del select de proveedores
 export function generarProveedores(proveedores) {
   const selectProveedor = document.getElementById('proveedorSelect');
 
@@ -44,12 +46,14 @@ export function generarProveedores(proveedores) {
     return;
   }
 
+  // Limpiar opciones existentes
   selectProveedor.textContent = ''
   const opcionDefault = document.createElement('option')
   opcionDefault.value = ''
   opcionDefault.textContent = '--- Proveedor ---'
   selectProveedor.appendChild(opcionDefault)
 
+  // Agregar nuevas opciones de proveedores
   proveedores.forEach(proveedor => {
     const option = document.createElement('option')
     option.value = proveedor.nombre

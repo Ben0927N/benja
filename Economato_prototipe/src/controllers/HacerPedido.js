@@ -2,8 +2,8 @@ import { cargarPagina } from '../Routers/enlaces.js';
 import { obtenerTodosLosProveedores } from '../services/proveedoresService.js';
 import { guardarNuevoPedidoAPI } from '../services/economatoServices.js'; 
 
+//Función para cargar la lista de proveedores en el select del formulario
 function cargarProveedores(proveedores) {
-    // 🌟 CORRECCIÓN DEL ID: usamos 'proveedorPedido' para que coincida con HacerPedido.html
     const selectProveedor = document.getElementById('proveedorPedido'); 
 
     if (!selectProveedor) {
@@ -13,6 +13,7 @@ function cargarProveedores(proveedores) {
     
     selectProveedor.innerHTML = '<option value="">-- Seleccionar Proveedor --</option>';
 
+    // Rellenar el select con los proveedores obtenidos
     proveedores.forEach(proveedor => {
         const option = document.createElement('option');
         option.value = proveedor.id; 
@@ -21,7 +22,7 @@ function cargarProveedores(proveedores) {
     });
 }
 
-// 🌟 FUNCIÓN PARA MANEJAR EL ENVÍO DEL FORMULARIO
+//Función para manejar el envío del formulario de nuevo pedido
 async function onSubmitPedido(e) {
     e.preventDefault();
 
@@ -35,6 +36,7 @@ async function onSubmitPedido(e) {
         return;
     }
 
+    // Crear el objeto del nuevo pedido
     const nuevoPedido = {
         fecha: fecha,
         proveedorId: proveedorId, 
@@ -53,7 +55,7 @@ async function onSubmitPedido(e) {
     }
 }
 
-
+//Función principal para inicializar la página de hacer pedido
 async function inicializarHacerPedido() {
     // 1. Cargar proveedores de forma asíncrona
     try {
@@ -63,7 +65,7 @@ async function inicializarHacerPedido() {
         console.error("Error al inicializar la lista de proveedores:", error);
     }
     
-    // 2. Lógica de botones (se mantiene)
+    // 2. Lógica de botones
     const btnVolver = document.getElementById('btnVolverPedidos');
     const btnVerPedidos = document.getElementById('btnIrVerPedidos');
 
@@ -81,7 +83,7 @@ async function inicializarHacerPedido() {
         });
     }
 
-    // 3. 🌟 ADICIÓN: Añadir el listener de envío al formulario
+    // 3.Añadir el listener de envío al formulario
     const form = document.getElementById('formNuevoPedido');
     if (form) {
         form.addEventListener('submit', onSubmitPedido); 

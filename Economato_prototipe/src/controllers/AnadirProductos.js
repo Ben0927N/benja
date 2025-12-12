@@ -19,7 +19,7 @@ async function inicializarFormulario() {
             getProveedores()
         ]);
 
-        listaProveedores = proveedores; // 🌟 Guardar la lista para usarla en el submit
+        listaProveedores = proveedores;
 
         if (categorias.length) generarCategorias(categorias);
 
@@ -35,20 +35,20 @@ async function inicializarFormulario() {
         return;
     }
 
-    // 2. Lógica del Botón Volver (se mantiene)
+    // 2. Lógica del Botón Volver
     if (btnVolver) {
         btnVolver.addEventListener('click', () => cargarPagina('tabla'));
     }
 
-    // 3. 🌟 CORRECCIÓN: Manejar el envío del formulario
+    // 3. Manejar el envío del formulario
     if (form) {
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
 
             const categoriaValue = categoriaSelect.value.trim();
-            const proveedorId = proveedorSelect.value.trim(); // 🌟 Usar el ID del proveedor
+            const proveedorId = proveedorSelect.value.trim();
             
-            // 🌟 OBTENER OBJETO COMPLETO del proveedor usando el ID
+            // Obtener objeto completo del proveedor usando el ID
             const proveedorSeleccionado = listaProveedores.find(p => p.id === proveedorId); 
             
             if (!categoriaValue || !proveedorId || !proveedorSeleccionado) {
@@ -56,30 +56,28 @@ async function inicializarFormulario() {
                 return;
             }
 
+            // Construir el objeto del nuevo producto
             const nuevoProducto = {
-                // 🌟 CORRECCIÓN: Usar 'stockMinimo' en lugar de 'minimo'
                 id: document.getElementById("ID").value.trim() || Date.now().toString(),
                 nombre: document.getElementById("nombre").value.trim(),
                 categoria: { 
                     nombre: categoriaValue, 
-                    // Asumo que la categoría también tiene un ID en db.json, podrías añadirlo si lo necesitas:
-                    // id: categorias.find(c => c.nombre === categoriaValue)?.id
                 },
                 precio: parseFloat(document.getElementById("precio").value),
                 stock: parseInt(document.getElementById("stock").value),
-                stockMinimo: parseInt(document.getElementById("minimo").value), // 🌟 CORREGIDO el nombre de la propiedad
+                stockMinimo: parseInt(document.getElementById("minimo").value),
                 proveedor: {
-                    // 🌟 Mapeamos el nombre y la isla del proveedor
                     nombre: proveedorSeleccionado.nombre,
-                    isla: proveedorSeleccionado.isla || 'N/A' // Asumo que el objeto proveedor tiene una propiedad 'isla'
+                    isla: proveedorSeleccionado.isla || 'N/A' 
                 }
             };
 
+            // Validaciones básicas
             try {
                 await agregarProductoAPI(nuevoProducto);
                 alert("Producto añadido correctamente.");
                 form.reset();
-                cargarPagina("tabla"); // O a la vista que lista los productos
+                cargarPagina("tabla"); 
             } catch (error) {
                 alert(`Error al guardar: ${error.message}. Revisar si el JSON Server está activo.`);
                 console.error("Fallo al guardar producto:", error);

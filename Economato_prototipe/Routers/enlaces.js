@@ -1,3 +1,4 @@
+/* Cargar todos los css*/
 function cargarCSS(href) {
     const oldLink = document.querySelector('link[data-dynamic="true"]');
     if (oldLink) oldLink.remove();
@@ -8,6 +9,8 @@ function cargarCSS(href) {
     link.dataset.dynamic = "true";
     document.head.appendChild(link);
 }
+
+/* Cargar todos los scripts */
 
 function cargarScript(src) {
     return new Promise((resolve) => {
@@ -31,6 +34,8 @@ function cargarScript(src) {
         document.body.appendChild(script);
     });
 }
+
+/*Función para cargar páginas */
 
 export async function cargarPagina(page) {
     const content = document.getElementById("content");
@@ -75,6 +80,6 @@ export async function cargarPagina(page) {
 
     } catch (error) {
         console.error("Error al cargar la página:", error);
-        content.innerHTML = `<h2 style='color:red;'>Error al cargar: ${error.message}</h2>`;
+        content.innerHTML = `<h2'>Error al cargar: ${error.message}</h2>`;
     }
 }

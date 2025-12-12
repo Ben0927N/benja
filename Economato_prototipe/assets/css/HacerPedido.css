@@ -1,4 +1,4 @@
-/* --- Estructura del Formulario de Pedido --- */
+/*Estructura del Formulario de Pedido*/
 .formulario-container {
     max-width: 600px;
     margin: 20px auto;
@@ -23,29 +23,27 @@
 }
 
 .btn-principal-formulario {
-    /* Mismo estilo que tu botón azul/verde, si usas uno verde para guardar */
-    background: #28a745; /* Verde para Guardar */
+    background: #a72828;
 }
 .btn-principal-formulario:hover {
-    background: #1e7e34;
+    background: #7e1e1e;
 }
 
-/* --- Controles de Navegación Inferiores --- */
+/*Controles de Navegación Inferiores*/
 .controles-navegacion-pedido {
     display: flex;
-    justify-content: space-between; /* Espacia los botones "Volver" y "Ver Pedidos" */
+    justify-content: space-between;
     max-width: 600px;
     margin: 20px auto 40px auto;
 }
 
 .btn-secundario-formulario {
-    /* Un estilo más neutro para los botones de navegación */
-    background: #6c757d; /* Gris */
+    background: #843030;
     color: white;
     padding: 10px 15px;
-    width: 48%; /* Para que cada uno ocupe casi la mitad del espacio */
+    width: 48%;
 }
 
 .btn-secundario-formulario:hover {
-    background: #5a6268;
+    background: #5a2626;
 }

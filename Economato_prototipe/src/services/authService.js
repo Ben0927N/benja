@@ -1,7 +1,9 @@
 const API_URL = 'http://localhost:3000'
 
+// Servicio de autenticación
 export const authService = {
 
+    // Función para iniciar sesión
     async login(username, password) {
         try {
             const url = `${API_URL}/usuarios?username=${username}&password=${password}`
@@ -19,6 +21,7 @@ export const authService = {
         }
     },
     
+    // Función para registrar un nuevo usuario
     async register(userData) {
         try {
             const existingUserResponse = await fetch(`${API_URL}/usuarios?username=${userData.username}&email=${userData.email}`)

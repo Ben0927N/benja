@@ -1,8 +1,7 @@
 import { cargarPagina } from '../../Routers/enlaces.js';
 
-// 🌟 Función de prueba: Simula la obtención de pedidos
+// Función para simular la obtención de pedidos desde una fuente de datos
 function obtenerPedidosSimulados() {
-    // Esto debería venir de una API real de pedidos (JSON Server, si la configuras)
     return [
         { id: 'PED001', fecha: '2025-12-10', proveedor: 'Frutas Frescas SL', items: 'Plátano: 50kg, Tomate: 30kg', estado: 'Pendiente' },
         { id: 'PED002', fecha: '2025-12-05', proveedor: 'Quesería Monte Arena', items: 'Queso Majorero: 10un', estado: 'Entregado' },
@@ -10,6 +9,7 @@ function obtenerPedidosSimulados() {
     ];
 }
 
+// Función para renderizar los pedidos en la tabla
 function renderizarPedidos(pedidos) {
     const tablaBody = document.getElementById('pedidosListadoBody');
     const resumen = document.getElementById('resumenPedidos');
@@ -27,6 +27,7 @@ function renderizarPedidos(pedidos) {
         return;
     }
 
+    // Rellenar la tabla con los datos de los pedidos
     pedidos.forEach(p => {
         const fila = document.createElement('tr');
         // Opcional: añadir clase para resaltar el estado
@@ -46,9 +47,10 @@ function renderizarPedidos(pedidos) {
     resumen.textContent = `Total de pedidos mostrados: ${pedidos.length}`;
 }
 
+// Función principal para inicializar la vista de Ver Pedidos
 function inicializarVerPedidos() {
     // 1. Cargar y renderizar los datos
-    const pedidos = obtenerPedidosSimulados(); // Usamos los datos simulados
+    const pedidos = obtenerPedidosSimulados(); 
     renderizarPedidos(pedidos);
 
     // 2. Enlazar los botones de navegación
@@ -59,7 +61,6 @@ function inicializarVerPedidos() {
     if (btnVolver) {
         btnVolver.addEventListener('click', (e) => {
             e.preventDefault();
-            // Ruta configurada en enlaces.js
             cargarPagina('pedidos'); 
         });
     }
@@ -68,7 +69,6 @@ function inicializarVerPedidos() {
     if (btnHacer) {
         btnHacer.addEventListener('click', (e) => {
             e.preventDefault();
-            // Ruta configurada en enlaces.js
             cargarPagina('hacerPedido'); 
         });
     }

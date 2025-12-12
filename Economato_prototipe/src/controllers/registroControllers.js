@@ -1,7 +1,7 @@
 import { authService } from '../services/authService.js'; 
 import { RegistroUI } from '../view/registro-uis.js';
-// Opcional: Si quieres redirigir automáticamente al login, puedes usar window.location.href.
 
+// Controlador para manejar el registro de usuarios
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("registroForm");
 
@@ -37,8 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             password: password,
             nombre: nombre,
             email: email,
-            role: "user" // Asignar un rol por defecto
-            // Puedes añadir más campos (apellidos, telefono) si los pones en el HTML
+            role: "user" 
         };
 
         // 4. Llamar al servicio de registro
