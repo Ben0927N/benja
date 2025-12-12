@@ -1,49 +1,39 @@
-Smart Economato - Prototipo
-Autor: Tanausú Castrillo Estévez
-Módulo: Desarrollo Web Entorno Cliente
-Año: 25/26
+Arquitectura
+   La aplicación opera bajo el principio de una SPA con enrutamiento dinámico. 
+   El archivo 'base' es "main.html", que actúa como el shell principal. 
+   El enrutamiento se gestiona mediante "main-router.js" (que detecta la navegación en el siderbar) y 
+   "enlaces.js" (que se encarga de cargar dinámicamente el HTML, CSS y el JavaScript asociado a la vista solicitada).
 
+La lógica se divide de la siguiente manera:
+   Vistas (html y css): Contienen la estructura y estilos que se inyectan en todas las paginas como front.
+   Controladores (src/controllers/): Manejan la interacción del usuario (filtros, búsquedas, envíos de formularios)
+   y coordinan las acciones, comunicándose con los Servicios para manipular los datos.
+   Servicios (src/services/ y src/utils/): Contienen la lógica de negocio, manipulación de datos y 
+   la comunicación con la API (que es JSON Server).
 
+Componentes Clave por Módulo:
+   1. Módulo de Autenticación (login.html, registro.html):
+      La autenticación se maneja a través de "loginController.js" y "registroControllers.js", 
+      que utilizan el "authService.js". Este servicio se comunica con usuarios del JSON para validar credenciales 
+      (login) o verificar el usuario y email antes de crear un nuevo registro. Las utilidades "login-ui.js" y 
+      "registro-uis.js" se encargan de mostrar los mensajes de error o exito en la interfaz.
 
+   2. Módulo de Productos / Almacén (tabla.html, listado.html):
+      Este es el núcleo de la gestión de inventario. El controlador principal "almacen.js" se encarga de la búsqueda, 
+      el filtrado por categoría, y la ordenación por precio de los productos cargados (entre otras funcionalidades) desde 
+      "economatoServices.js." La vista de listado paginado es gestionada por "listado.js", que implementa la estructura del 
+      formulario para mejorar el rendimiento de la interfaz. La interacción con el DOM para renderizar la tabla es 
+      responsabilidad de "almacen-ui.js".
 
-Descripción:
-Este proyecto consiste en una aplicación web que permite visualizar y gestionar un inventario de productos alimenticios procedentes del almacén de
-productos del CIFP Vigen de Candelaria.
-El objetivo es reforzar las competencias en JavaScript moderno, el uso de módulos ES6, la manipulación del DOM, los eventos y las funciones puras.
+   3. Módulo de Adición de Productos y Servicios:
+      La creación de nuevos productos es manejada por "AnadirProductos.js", que se asegura de cargar las categorías 
+      y proveedores necesarios antes de enviar la información a la API a través de la función "agregarProductoAPI" en 
+      "economatoServices.js". Este servicio actúa como el cliente HTTP para todos los endpoints principales 
+      (/productos, /categorias, /proveedores, /pedidos). El archivo "proveedoresService.js" es un servicio auxiliar para 
+      obtener la lista de proveedores.
 
-Estructura del proyecto:
-index.html: contiene la interfaz y estructura principal de la aplicación.
-almacen.js: gestiona los eventos, el DOM y la lógica de interacción.
-funciones.js: define las funciones puras que procesan los datos.
-productos.js: contiene los datos del inventario de productos.
-README.txt: documentación básica del proyecto.
-
-Objetivos didácticos que nos planteamos:
-- Trabajar con arrays y objetos complejos.
-- Separar la lógica de la interfaz mediante módulos.
-- Practicar la manipulación del DOM.
-- Aprender a capturar eventos y responder dinámicamente.
-- Introducir buenas prácticas de documentación (JSDoc).
-- Usar el depurador de VSCode para comprender el flujo del programa.
-
-Normas de uso:
-
-- Con lo visto en clase no necitamos incorporar ChatGPT para nada.
-
-Ejecución esperada de nuesto proyecto:
-1. Abrir la carpeta del proyecto en Visual Studio Code.
-2. Instalar y ejecutar la extensión Live Server.
-3. Ejecutar el proyecto desde index.html.
-4. Interactuar con la interfaz: buscar, filtrar, ordenar, comprobar stock y mostrar todos los productos.
-
-Generación de documentación con JSDoc:
-1. Node.js me han confirmado que está desplegado en los equipos del entorno Medusa, por lo que no es necesario instalarlo manualmente.
-2. Abrir una terminal en la carpeta del proyecto.
-3. Instalar JSDoc de manera global con el siguiente comando:
-   npm install -g jsdoc
-4. Generar la documentación ejecutando:
-   jsdoc . -r -d docs
-   Este comando analiza todos los archivos JavaScript del proyecto y genera una carpeta llamada docs con la documentación en formato HTML.
-5. Abrir el archivo docs/index.html en el navegador para consultar la documentación generada.
-6. Si se desea actualizar la documentación tras cambios en el código, repetir el comando anterior.
-
+   4. Módulo de Pedidos (pedidos.html, HacerPedido.html, VerPedidos.html) (La intención que tenia con Pedidos):
+      El controlador "pedidos.js" simplemente actúa como un seleccionador que dirige al usuario a las vistas de "Hacer Pedido" 
+      o "Ver Pedidos". La lógica de creación de un pedido reside en "HacerPedido.js", que recupera la lista de proveedores y 
+      envía el nuevo pedido a la API mediante "guardarNuevoPedidoAPI". Finalmente, "VerPedidos.js" se encarga de mostrar la 
+      tabla de pedidos.
